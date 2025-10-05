@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+      <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({"userId":283121,"visitorType":"student","batch":{"id":158,"fullNameWithC":"AFR-1123 (C#22)","schoolLocation":{"id":1,"name":"ALX Africa"}},"curriculum":{"id":1,"name":"SE Foundations"}});
+
+    window.gtm_user_custom_event = function (name, options) {
+      if (typeof name === 'undefined') {
+        return;
+      }
+
+      window.dataLayer.push({
+        customEventOptions: typeof options !== 'undefined' ? options : {},
+        event: name,
+      });
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N4C8MF2');</script>
+  <!-- End Google Tag Manager -->
+
+    
+
+    <title>Project: 0x16. API advanced | ALX Africa Intranet</title>
+
+      <link rel="stylesheet" href="https://use.typekit.net/xgz4ilr.css">
+      <link rel="stylesheet" media="all" href="https://savanna.alxafrica.com/assets/application_alx-86c669cec6c3a27a798acc634b0f2159b34933cb3bcdaa861f67d1191f26a702.css" />
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="https://savanna.alxafrica.com/favicon_alx.ico" />
+      <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="X-koxjc4VJmQwFUoOkfXbV3gSwh9BzgAQ2pRItUkKoKflqFyG5gVDYFmklJeUa4QgUg5hHR3dGGxsDmzUIDJ2g" />
+
+      <link rel="apple-touch-icon" href="https://savanna.alxafrica.com/apple-touch-icon_alx.png">
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <!-- Store user timezone -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof Cookies !== 'undefined') {
+            Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+          }
+        });
+      </script>
+
+
+      <!-- React -->
+      <script src="https://savanna.alxafrica.com/assets/app-62a46ee6509545cef217c1976df7d2651b54efc2a1247209fa6431afd6b8e488.js" data-turbo-track="reload" defer="defer"></script>
+<script src="https://savanna.alxafrica.com/assets/sprockets-c0e56a0d20ac74bcb4df5e9aab8ca9f5adc008dd64356339a335587588218637.js" data-turbo-track="reload" defer="defer"></script>
+      <link rel="stylesheet" media="all" href="https://savanna.alxafrica.com/assets/app-af63263adaa999d5979ab3c38d7593c2f2fa24a49bf2b26030dd08b56149029e.css" />
+
+
+  </head>
+
+  <body class="signed_in env_production notranslate"
+        translate="no"
+        class="notranslate"
+        data-theme-suffix="_alx">
+      <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4C8MF2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+      <div data-react-class="header/Header" data-react-props="{&quot;csrfToken&quot;:&quot;J61awr3_hCtZVR9gDkhS-MXuWmmP065dP2o52Q_AWnvn0tN2kV_Fv0jz2BpqXiuFGUYo5Yaj4jzNsFFIimS5Iw&quot;,&quot;ehubHeaderSdkJsUrl&quot;:null,&quot;logoUrl&quot;:&quot;https://savanna.alxafrica.com/assets/holberton-logo-full-alx-d053727941512ebe04b797ca87d81a195004e9ff2d8a6aedf4004c5365cf8944.png&quot;,&quot;logoutUrl&quot;:&quot;/auth/sign_out&quot;,&quot;logoClickUrl&quot;:&quot;/&quot;,&quot;redirectUrl&quot;:&quot;/auth/sign_in&quot;,&quot;discord&quot;:{&quot;label&quot;:&quot;Discord&quot;,&quot;targetUrl&quot;:&quot;https://discord.com/channels/1148581179084243054&quot;,&quot;linkOpts&quot;:{&quot;target&quot;:&quot;_blank&quot;,&quot;rel&quot;:&quot;noreferrer&quot;}},&quot;user&quot;:{&quot;myProfileUrl&quot;:&quot;/users/my_profile&quot;,&quot;profilePictureUrl&quot;:&quot;https://savanna.alxafrica.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeWU1RWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--763c97b55afcc1d18e11a0200045fce081ae5b13/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/yael-yas.jpg&quot;},&quot;listItems&quot;:[{&quot;label&quot;:&quot;My Planning&quot;,&quot;iconName&quot;:&quot;calendar&quot;,&quot;targetUrl&quot;:&quot;/planning/me&quot;},{&quot;label&quot;:&quot;Projects&quot;,&quot;iconName&quot;:&quot;code-fork&quot;,&quot;targetUrl&quot;:&quot;/projects/current&quot;,&quot;id&quot;:&quot;sidebar-current-projects-item&quot;},{&quot;label&quot;:&quot;QA Reviews I can make&quot;,&quot;iconName&quot;:&quot;check&quot;,&quot;targetUrl&quot;:&quot;/corrections/to_review&quot;},{&quot;label&quot;:&quot;Evaluation quizzes&quot;,&quot;iconName&quot;:&quot;question&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_current_evaluation_quizzes&quot;},{&quot;label&quot;:&quot;My resources&quot;},{&quot;label&quot;:&quot;My courses&quot;,&quot;iconName&quot;:&quot;graduation-cap&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_curriculums&quot;},{&quot;label&quot;:&quot;Concepts&quot;,&quot;iconName&quot;:&quot;file-text&quot;,&quot;targetUrl&quot;:&quot;/concepts&quot;,&quot;id&quot;:&quot;sidebar-concepts-item&quot;},{&quot;label&quot;:&quot;Conference rooms&quot;,&quot;iconName&quot;:&quot;comments&quot;,&quot;targetUrl&quot;:&quot;/dashboards/video_rooms&quot;,&quot;id&quot;:&quot;sidebar-dashboards-video-rooms&quot;},{&quot;label&quot;:&quot;Servers&quot;,&quot;iconName&quot;:&quot;server&quot;,&quot;targetUrl&quot;:&quot;/servers&quot;},{&quot;label&quot;:&quot;Sandboxes&quot;,&quot;iconName&quot;:&quot;terminal&quot;,&quot;targetUrl&quot;:&quot;/user_containers/current&quot;,&quot;id&quot;:&quot;sidebar-dashboards-my-containers&quot;},{&quot;label&quot;:&quot;Tools&quot;,&quot;iconName&quot;:&quot;wrench&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_tools&quot;},{&quot;label&quot;:&quot;Video on demand&quot;,&quot;iconName&quot;:&quot;film&quot;,&quot;targetUrl&quot;:&quot;/dashboards/videos&quot;},{&quot;label&quot;:&quot;My Campus&quot;},{&quot;label&quot;:&quot;Peers&quot;,&quot;iconName&quot;:&quot;users&quot;,&quot;targetUrl&quot;:&quot;/users/peers&quot;}]}" data-react-cache-id="header/Header-0"></div>
+
+
+    <main class="content" id="content">
+        
+
+        <div id="layout-bars">
+          
+          <div class="px-5 py-3" id="student-switch-curriculum">
+  <div class="btn-group">
+    <div class="align-items-center d-flex gap-3" aria-expanded="false" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button">
+      <div class="d-flex flex-column" style="line-height: 16px">
+        <span class="fs-4 fw-semibold" style="font-size: 15px !important;">
+          SE Foundations
+        </span>
+        <span class="fs-sm text-muted">
+          Average: <span class="fw-medium">109.87%</span>
+        </span>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center">
+        <span style="margin-bottom: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-up fa-fw"></i>
+        </span>
+        <span style="margin-top: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-down fa-fw"></i>
+        </span>
+      </div>
+</div>
+    <ul class="dropdown-menu-400 fs-5 dropdown-menu">
+        <li><a class="dropdown-item" href="https://savanna.alxafrica.com/curriculums/1/observe">
+          <div class="align-items-center d-flex py-2">
+            <div class="d-flex flex-column" style="line-height: 16px">
+              <span class="fs-4 fw-medium" style="font-size: 15px !important;">
+                SE Foundations
+              </span>
+              <span class="text-muted" style="font-size: 14px !important;">
+                Average: <span class="fw-medium">109.87%</span>
+              </span>
+            </div>
+
+              <span class="fw-semibold text-info" style="margin-left: 42px">
+                <i aria-hidden="true" class="fa-solid fa-check"></i>
+              </span>
+          </div>
+</a></li></ul></div></div>
+
+          
+          
+        </div>
+
+      <article class="">
+
+        
+  <div class="d-flex flex-wrap">
+
+    <div class="flex-grow-1" id="curriculum_navigation_content">
+      
+<div class="project row">
+  <div class="col-12 col-xl-10 contains-images">
+    <div id="project_id" style="display: none" data-project-id="314"></div>
+
+    <div class="vstack gap-3">
+        <div class="hstack gap-3 justify-content-between">
+    <h1 class="m-0">
+      0x16. API advanced
+      
+    </h1>
+
+  </div>
+
+  <div data-react-class="tags/Tags" data-react-props="{&quot;tags&quot;:[{&quot;id&quot;:19,&quot;value&quot;:&quot;Python&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:28,&quot;value&quot;:&quot;Scripting&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:35,&quot;value&quot;:&quot;Back-end&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:36,&quot;value&quot;:&quot;API&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;}]}" data-react-cache-id="tags/Tags-0"></div>
+
+  <div data-react-class="projects/ProjectMetadata" data-react-props="{&quot;metadata&quot;:{&quot;has_ai_grader&quot;:false,&quot;correction&quot;:{&quot;released&quot;:true,&quot;requires_auto_correction&quot;:true,&quot;requires_manual_correction&quot;:false},&quot;bpi&quot;:{&quot;current&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2024-08-13T06:00:00.000+03:00&quot;,&quot;ends_at&quot;:&quot;2024-08-14T06:00:00.000+03:00&quot;,&quot;second_deadline_at&quot;:&quot;2024-08-16T06:00:00.000+03:00&quot;},&quot;weight&quot;:1}}" data-react-cache-id="projects/ProjectMetadata-0"></div>
+
+  <div class="sm-gap clean well">
+  <h4>In a nutshell&hellip;</h4>
+  <ul>
+
+
+      <li>
+        <strong>Auto QA review:</strong>
+          4.0/17 mandatory
+            &
+            0.0/7 optional
+      </li>
+    <li>
+      <strong>Altogether:</strong>
+        &nbsp;<strong>23.53%</strong>
+        <ul>
+          <li>Mandatory: 23.53%</li>
+            <li>Optional: 0.0%</li>
+            <li>
+              Calculation:&nbsp;
+                  23.53%
+                    + (23.53% * 0.0%)
+              &nbsp;==&nbsp;<strong>23.53%</strong>
+            </li>
+        </ul>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+        
+        
+        <div class="card mb-3">
+  <div class="card-body">
+    <p><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/314/WIxXad8.png" alt="" loading='lazy' style="" /></p>
+
+<h2>Background Context</h2>
+
+<p>Questions involving APIs are common for interviews. Sometimes they&rsquo;re as simple as &lsquo;write a Python script that queries a given endpoint&rsquo;, sometimes they require you to use recursive functions and format/sort the results.</p>
+
+<p>A great API to use for some practice is the Reddit API. There&rsquo;s a lot of endpoints available, many that don&rsquo;t require any form of authentication, and there&rsquo;s tons of information to be parsed out and presented. Getting comfortable with API calls now can save you some face during technical interviews and even outside of the job market, you might find personal use cases to make your life a little bit easier.</p>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="https://savanna.alxafrica.com/rltoken/b-4nD6hwEeNYTwYl5yWNwA" title="Reddit API Documentation" target="_blank">Reddit API Documentation</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/luFn_zrgmAQ0OAO_PEI9bA" title="Query String" target="_blank">Query String</a></li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>At the end of this project, you are expected to be able to <a href="https://savanna.alxafrica.com/rltoken/uDfkZ_HQ_YnelvPnhnBOnw" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+
+<h3>General</h3>
+
+<ul>
+<li>How to read API documentation to find the endpoints you&rsquo;re looking for</li>
+<li>How to use an API with pagination</li>
+<li>How to parse JSON results from an API</li>
+<li>How to make a recursive API call</li>
+<li>How to sort a dictionary by value</li>
+</ul>
+
+<h3>Copyright - Plagiarism</h3>
+
+<ul>
+<li>You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.</li>
+<li>You will not be able to meet the objectives of this or any following project by copying and pasting someone else&rsquo;s work. </li>
+<li>You are not allowed to publish any content of this project.</li>
+<li>Any form of plagiarism is strictly forbidden and will result in removal from the program.</li>
+</ul>
+
+<h2>Requirements</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be interpreted/compiled on Ubuntu 20.04 LTS using <code>python3</code> (version 3.4.3)</li>
+<li>All your files should end with a new line</li>
+<li>The first line of all your files should be exactly <code>#!/usr/bin/python3</code></li>
+<li>Libraries imported in your Python files must be organized in alphabetical order</li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>Your code should use the <code>PEP 8</code> style</li>
+<li>All your files must be executable</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+<li>All your modules should have a documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).__doc__)&#39;</code>)</li>
+<li>You must use the Requests module for sending HTTP requests to the Reddit API</li>
+</ul>
+
+</div></div>
+        
+        
+
+          
+            <h2 class="mt-5">Tasks</h2>
+
+  <div class="vstack gap-5">
+      <div data-role="task1862" data-position="1" id="task-num-0">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1862">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>0. How many subs?</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1862" data-correction-id="43664959">
+          <div class="task_progress_bar" style="width: 20.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">20.0%</span> (<span class="task_progress_value">Checks completed: 20.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a function that queries the <a href="https://savanna.alxafrica.com/rltoken/b-4nD6hwEeNYTwYl5yWNwA" title="Reddit API" target="_blank">Reddit API</a> and returns the number of subscribers (not active users, total subscribers) for a given subreddit. If an invalid subreddit is given, the function should return 0.</p>
+
+<p>Hint: No authentication is necessary for most features of the Reddit API. If you&rsquo;re getting errors related to Too Many Requests, ensure you&rsquo;re setting a custom User-Agent.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Prototype: <code>def number_of_subscribers(subreddit)</code></li>
+<li>If not a valid subreddit, return 0.</li>
+<li>NOTE: Invalid subreddits may return a redirect to search results. Ensure that you are not following redirects.</li>
+</ul>
+
+<pre><code>wintermancer@lapbox ~/reddit_api/project $ cat 0-main.py
+#!/usr/bin/python3
+&quot;&quot;&quot;
+0-main
+&quot;&quot;&quot;
+import sys
+
+if __name__ == &#39;__main__&#39;:
+    number_of_subscribers = __import__(&#39;0-subs&#39;).number_of_subscribers
+    if len(sys.argv) &lt; 2:
+        print(&quot;Please pass an argument for the subreddit to search.&quot;)
+    else:
+        print(&quot;{:d}&quot;.format(number_of_subscribers(sys.argv[1])))
+wintermancer@lapbox ~/reddit_api/project $ python3 0-main.py programming
+756024
+wintermancer@lapbox ~/reddit_api/project $ python3 0-main.py this_is_a_fake_subreddit
+0
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x16-api_advanced</code></li>
+              <li>File: <code>0-subs.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1862-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1862}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1862" type="button" class="btn btn-default btn-sm check-your-task-1862-modal-button" id="task-num-0-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1862-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1862-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1862-correction-modal-label">0. How many subs?</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1862">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1862">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1862">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+            <button class="btn btn-primary btn-sm task_ask_new_correction " data-task-id="1862" data-correction-id="43664959">
+              Mark submission
+              <span class="in_progress_info">: in progress...</span>
+              <span class="error_occurred_info">: an error occurred</span>
+            </button>
+
+          
+
+            
+<button data-bs-target="#task-qa-review-1862-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1862}" data-task-id="1862" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1862-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1862-modal" tabindex="-1" data-correction-id="43664959" data-task-id="1862"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1862-modal-label">0. How many subs?</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1863" data-position="2" id="task-num-1">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1863">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>1. Top Ten</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1863" data-correction-id="43664959">
+          <div class="task_progress_bar" style="width: 33.33%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">33.33%</span> (<span class="task_progress_value">Checks completed: 33.33%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a function that queries the <a href="https://savanna.alxafrica.com/rltoken/b-4nD6hwEeNYTwYl5yWNwA" title="Reddit API" target="_blank">Reddit API</a> and prints the titles of the first 10 hot posts listed for a given subreddit.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Prototype: <code>def top_ten(subreddit)</code></li>
+<li>If not a valid subreddit, print None.</li>
+<li>NOTE: Invalid subreddits may return a redirect to search results. Ensure that you are not following redirects.</li>
+</ul>
+
+<pre><code>wintermancer@lapbox ~/reddit_api/project $ cat 1-main.py
+#!/usr/bin/python3
+&quot;&quot;&quot;
+1-main
+&quot;&quot;&quot;
+import sys
+
+if __name__ == &#39;__main__&#39;:
+    top_ten = __import__(&#39;1-top_ten&#39;).top_ten
+    if len(sys.argv) &lt; 2:
+        print(&quot;Please pass an argument for the subreddit to search.&quot;)
+    else:
+        top_ten(sys.argv[1])
+wintermancer@lapbox ~/reddit_api/project $ python3 1-main.py programming
+Firebase founder&#39;s response to last week&#39;s &quot;Firebase Costs increased by 7000%!&quot;
+How a 64k intro is made
+HTTPS on Stack Overflow: The End of a Long Road
+Spend effort on your Git commits
+It&#39;s a few years old, but I just discovered this incredibly impressive video of researchers reconstructing sounds from video information alone
+From the D Blog: Introspection, Introspection Everywhere
+Do MVC like it’s 1979
+GitHub is moving to GraphQL for v4 of their API (v3 was a REST API)
+Google Bug Bounty - The 5k Error Page
+PyCon 2017 Talk Videos
+wintermancer@lapbox ~/reddit_api/project $ python3 1-main.py this_is_a_fake_subreddit
+None
+wintermancer@lapbox ~/reddit_api/project $ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x16-api_advanced</code></li>
+              <li>File: <code>1-top_ten.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1863-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1863}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1863" type="button" class="btn btn-default btn-sm check-your-task-1863-modal-button" id="task-num-1-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1863-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1863-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1863-correction-modal-label">1. Top Ten</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1863">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1863">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1863">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+            <button class="btn btn-primary btn-sm task_ask_new_correction " data-task-id="1863" data-correction-id="43664959">
+              Mark submission
+              <span class="in_progress_info">: in progress...</span>
+              <span class="error_occurred_info">: an error occurred</span>
+            </button>
+
+          
+
+            
+<button data-bs-target="#task-qa-review-1863-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1863}" data-task-id="1863" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1863-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1863-modal" tabindex="-1" data-correction-id="43664959" data-task-id="1863"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1863-modal-label">1. Top Ten</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1864" data-position="3" id="task-num-2">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1864">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>2. Recurse it!</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1864" data-correction-id="43664959">
+          <div class="task_progress_bar" style="width: 16.67%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">16.67%</span> (<span class="task_progress_value">Checks completed: 16.67%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a <em>recursive function</em> that queries the <a href="https://savanna.alxafrica.com/rltoken/b-4nD6hwEeNYTwYl5yWNwA" title="Reddit API" target="_blank">Reddit API</a> and returns a list containing the titles of all hot articles for a given subreddit. If no results are found for the given subreddit, the function should return None.</p>
+
+<p>Hint: The Reddit API uses pagination for separating pages of responses.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Prototype: <code>def recurse(subreddit, hot_list=[])</code></li>
+<li>Note: You may change the prototype, but it must be able to be called with just a subreddit supplied. AKA you can add a counter, but it must work without supplying a starting value in the main.</li>
+<li>If not a valid subreddit, return None.</li>
+<li>NOTE: Invalid subreddits may return a redirect to search results. Ensure that you are not following redirects.</li>
+</ul>
+
+<p>Your code will NOT pass if you are using a loop and not recursively calling the function! This /can/ be done with a loop but the point is to use a recursive function. :)</p>
+
+<pre><code>wintermancer@lapbox ~/reddit_api/project $ cat 2-main.py
+#!/usr/bin/python3
+&quot;&quot;&quot;
+2-main
+&quot;&quot;&quot;
+import sys
+
+if __name__ == &#39;__main__&#39;:
+    recurse = __import__(&#39;2-recurse&#39;).recurse
+    if len(sys.argv) &lt; 2:
+        print(&quot;Please pass an argument for the subreddit to search.&quot;)
+    else:
+        result = recurse(sys.argv[1])
+        if result is not None:
+            print(len(result))
+        else:
+            print(&quot;None&quot;)
+wintermancer@lapbox ~/reddit_api/project $ python3 2-main.py programming
+932
+wintermancer@lapbox ~/reddit_api/project $ python3 2-main.py this_is_a_fake_subreddit
+None
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x16-api_advanced</code></li>
+              <li>File: <code>2-recurse.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1864-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1864}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1864" type="button" class="btn btn-default btn-sm check-your-task-1864-modal-button" id="task-num-2-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1864-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1864-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1864-correction-modal-label">2. Recurse it!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1864">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1864">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1864">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+            <button class="btn btn-primary btn-sm task_ask_new_correction " data-task-id="1864" data-correction-id="43664959">
+              Mark submission
+              <span class="in_progress_info">: in progress...</span>
+              <span class="error_occurred_info">: an error occurred</span>
+            </button>
+
+          
+
+            
+<button data-bs-target="#task-qa-review-1864-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1864}" data-task-id="1864" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1864-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1864-modal" tabindex="-1" data-correction-id="43664959" data-task-id="1864"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1864-modal-label">2. Recurse it!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+  </div>
+
+    <form class="d-grid mt-5" method="post" action="https://savanna.alxafrica.com/projects/314/unlock_optionals"><input class="btn btn-primary" data-confirm="Are you sure? Make sure you focused on the mandatory tasks first" data-disable-with="Unlocking 1 advanced task..." data-gtm-custom-event-name="project_unlock_advanced_tasks" id="unlock_optional_btn" type="submit" value="Done with the mandatory tasks? Unlock 1 advanced task now!" /><input type="hidden" name="authenticity_token" value="mIhZj_YXBgqzfjddUxxeZKdwbuy1eQe5MCuRFa1oJ9ndpnIvg78UEUSx5rcWvQcwW3jkqqWjr7IE2aW-0XkiWA" autocomplete="off" /></form>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+      </article>
+
+        <div class="copyright">Copyright © 2025 ALX, All rights reserved.</div>
+
+    </main>
+
+        <button data-bs-target="#search-modal" data-bs-toggle="modal" data-search-active="false" type="button" class="btn btn-primary atop-help" id="search-button">    <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+    <i aria-hidden="true" class="fa-solid fa-window-minimize"></i>
+</button><div aria-hidden="true" aria-labelledby="search-modal-label" class="modal fade" id="search-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header d-block">    <div class="position-relative">
+      <input id="search-bar"
+              autocomplete="off"
+              type="text"
+              placeholder="Search ...">
+    </div>
+</div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="vstack gap-4" id="search-results-container"></div>
+</div></div></div></div>
+
+
+        <div aria-hidden="true" aria-labelledby="markdown-guide-modal-label" class="modal modal-lg fade" id="markdown-guide-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="markdown-guide-modal-label">Markdown guide</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>> This is a quote.
+> It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+</div></div></div></div>
+
+        <script id="cody-snippet">
+          window.codySettings = { widget_id: "9993bc72-2258-452b-a4bf-b2fe1ad5e0d7" };
+          !function(){var t=window,e=document,a=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://trinketsofcody.com/cody-widget.js";var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?a():t.attachEvent?t.attachEvent("onload",a):t.addEventListener("load",a,!1)}();
+        </script>
+  </body>
+</html>
