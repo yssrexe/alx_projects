@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+      <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({"userId":283121,"visitorType":"student","batch":{"id":158,"fullNameWithC":"AFR-1123 (C#22)","schoolLocation":{"id":1,"name":"ALX Africa"}},"curriculum":{"id":1,"name":"SE Foundations"}});
+
+    window.gtm_user_custom_event = function (name, options) {
+      if (typeof name === 'undefined') {
+        return;
+      }
+
+      window.dataLayer.push({
+        customEventOptions: typeof options !== 'undefined' ? options : {},
+        event: name,
+      });
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N4C8MF2');</script>
+  <!-- End Google Tag Manager -->
+
+    
+
+    <title>Project: 0x19. Postmortem | ALX Africa Intranet</title>
+
+      <link rel="stylesheet" href="https://use.typekit.net/xgz4ilr.css">
+      <link rel="stylesheet" media="all" href="/assets/application_alx-86c669cec6c3a27a798acc634b0f2159b34933cb3bcdaa861f67d1191f26a702.css" />
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="/favicon_alx.ico" />
+      <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="MuLYvlvn54mOtLa2O29SgCNhFCQid0icyyc_aRzfe6nGk1QbcNZAP082vBp416304sRwLHLt3OoOJNXcHvjaxQ" />
+
+      <link rel="apple-touch-icon" href="/apple-touch-icon_alx.png">
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <!-- Store user timezone -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof Cookies !== 'undefined') {
+            Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+          }
+        });
+      </script>
+
+
+      <!-- React -->
+      <script src="/assets/app-62a46ee6509545cef217c1976df7d2651b54efc2a1247209fa6431afd6b8e488.js" data-turbo-track="reload" defer="defer"></script>
+<script src="/assets/sprockets-c0e56a0d20ac74bcb4df5e9aab8ca9f5adc008dd64356339a335587588218637.js" data-turbo-track="reload" defer="defer"></script>
+      <link rel="stylesheet" media="all" href="/assets/app-af63263adaa999d5979ab3c38d7593c2f2fa24a49bf2b26030dd08b56149029e.css" />
+
+
+  </head>
+
+  <body class="signed_in env_production notranslate"
+        translate="no"
+        class="notranslate"
+        data-theme-suffix="_alx">
+      <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4C8MF2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+      <div data-react-class="header/Header" data-react-props="{&quot;csrfToken&quot;:&quot;6DF9tc1YCXEvvOKcTfM9qJ-OR7KJPHUscu1K4qFWxvIcQPEQ5mmux-4-6DAOS8LcXisjutmm4Vq37qBXo3Fnng&quot;,&quot;ehubHeaderSdkJsUrl&quot;:null,&quot;logoUrl&quot;:&quot;https://savanna.alxafrica.com/assets/holberton-logo-full-alx-d053727941512ebe04b797ca87d81a195004e9ff2d8a6aedf4004c5365cf8944.png&quot;,&quot;logoutUrl&quot;:&quot;/auth/sign_out&quot;,&quot;logoClickUrl&quot;:&quot;/&quot;,&quot;redirectUrl&quot;:&quot;/auth/sign_in&quot;,&quot;discord&quot;:{&quot;label&quot;:&quot;Discord&quot;,&quot;targetUrl&quot;:&quot;https://discord.com/channels/1148581179084243054&quot;,&quot;linkOpts&quot;:{&quot;target&quot;:&quot;_blank&quot;,&quot;rel&quot;:&quot;noreferrer&quot;}},&quot;user&quot;:{&quot;myProfileUrl&quot;:&quot;/users/my_profile&quot;,&quot;profilePictureUrl&quot;:&quot;https://savanna.alxafrica.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeWU1RWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--763c97b55afcc1d18e11a0200045fce081ae5b13/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/yael-yas.jpg&quot;},&quot;listItems&quot;:[{&quot;label&quot;:&quot;My Planning&quot;,&quot;iconName&quot;:&quot;calendar&quot;,&quot;targetUrl&quot;:&quot;/planning/me&quot;},{&quot;label&quot;:&quot;Projects&quot;,&quot;iconName&quot;:&quot;code-fork&quot;,&quot;targetUrl&quot;:&quot;/projects/current&quot;,&quot;id&quot;:&quot;sidebar-current-projects-item&quot;},{&quot;label&quot;:&quot;QA Reviews I can make&quot;,&quot;iconName&quot;:&quot;check&quot;,&quot;targetUrl&quot;:&quot;/corrections/to_review&quot;},{&quot;label&quot;:&quot;Evaluation quizzes&quot;,&quot;iconName&quot;:&quot;question&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_current_evaluation_quizzes&quot;},{&quot;label&quot;:&quot;My resources&quot;},{&quot;label&quot;:&quot;My courses&quot;,&quot;iconName&quot;:&quot;graduation-cap&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_curriculums&quot;},{&quot;label&quot;:&quot;Concepts&quot;,&quot;iconName&quot;:&quot;file-text&quot;,&quot;targetUrl&quot;:&quot;/concepts&quot;,&quot;id&quot;:&quot;sidebar-concepts-item&quot;},{&quot;label&quot;:&quot;Conference rooms&quot;,&quot;iconName&quot;:&quot;comments&quot;,&quot;targetUrl&quot;:&quot;/dashboards/video_rooms&quot;,&quot;id&quot;:&quot;sidebar-dashboards-video-rooms&quot;},{&quot;label&quot;:&quot;Servers&quot;,&quot;iconName&quot;:&quot;server&quot;,&quot;targetUrl&quot;:&quot;/servers&quot;},{&quot;label&quot;:&quot;Sandboxes&quot;,&quot;iconName&quot;:&quot;terminal&quot;,&quot;targetUrl&quot;:&quot;/user_containers/current&quot;,&quot;id&quot;:&quot;sidebar-dashboards-my-containers&quot;},{&quot;label&quot;:&quot;Tools&quot;,&quot;iconName&quot;:&quot;wrench&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_tools&quot;},{&quot;label&quot;:&quot;Video on demand&quot;,&quot;iconName&quot;:&quot;film&quot;,&quot;targetUrl&quot;:&quot;/dashboards/videos&quot;},{&quot;label&quot;:&quot;My Campus&quot;},{&quot;label&quot;:&quot;Peers&quot;,&quot;iconName&quot;:&quot;users&quot;,&quot;targetUrl&quot;:&quot;/users/peers&quot;}]}" data-react-cache-id="header/Header-0"></div>
+
+
+    <main class="content" id="content">
+        
+
+        <div id="layout-bars">
+          
+          <div class="px-5 py-3" id="student-switch-curriculum">
+  <div class="btn-group">
+    <div class="align-items-center d-flex gap-3" aria-expanded="false" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button">
+      <div class="d-flex flex-column" style="line-height: 16px">
+        <span class="fs-4 fw-semibold" style="font-size: 15px !important;">
+          SE Foundations
+        </span>
+        <span class="fs-sm text-muted">
+          Average: <span class="fw-medium">109.87%</span>
+        </span>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center">
+        <span style="margin-bottom: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-up fa-fw"></i>
+        </span>
+        <span style="margin-top: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-down fa-fw"></i>
+        </span>
+      </div>
+</div>
+    <ul class="dropdown-menu-400 fs-5 dropdown-menu">
+        <li><a class="dropdown-item" href="/curriculums/1/observe">
+          <div class="align-items-center d-flex py-2">
+            <div class="d-flex flex-column" style="line-height: 16px">
+              <span class="fs-4 fw-medium" style="font-size: 15px !important;">
+                SE Foundations
+              </span>
+              <span class="text-muted" style="font-size: 14px !important;">
+                Average: <span class="fw-medium">109.87%</span>
+              </span>
+            </div>
+
+              <span class="fw-semibold text-info" style="margin-left: 42px">
+                <i aria-hidden="true" class="fa-solid fa-check"></i>
+              </span>
+          </div>
+</a></li></ul></div></div>
+
+          
+          
+        </div>
+
+      <article class="">
+
+        
+  <div class="d-flex flex-wrap">
+
+    <div class="flex-grow-1" id="curriculum_navigation_content">
+      
+<div class="project row">
+  <div class="col-12 col-xl-10 contains-images">
+    <div id="project_id" style="display: none" data-project-id="294"></div>
+
+    <div class="vstack gap-3">
+        <div class="hstack gap-3 justify-content-between">
+    <h1 class="m-0">
+      0x19. Postmortem
+      
+    </h1>
+
+  </div>
+
+  <div data-react-class="tags/Tags" data-react-props="{&quot;tags&quot;:[{&quot;id&quot;:6,&quot;value&quot;:&quot;DevOps&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:23,&quot;value&quot;:&quot;SysAdmin&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;}]}" data-react-cache-id="tags/Tags-0"></div>
+
+  <div data-react-class="projects/ProjectMetadata" data-react-props="{&quot;metadata&quot;:{&quot;weight&quot;:1,&quot;has_ai_grader&quot;:false,&quot;correction&quot;:{&quot;released&quot;:true,&quot;requires_auto_correction&quot;:false,&quot;requires_manual_correction&quot;:true,&quot;manual_done_at&quot;:&quot;2024-08-31T11:35:03.000+03:00&quot;},&quot;bpi&quot;:{&quot;current&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2024-08-12T06:00:00.000+03:00&quot;,&quot;ends_at&quot;:&quot;2024-08-19T06:00:00.000+03:00&quot;,&quot;second_deadline_at&quot;:&quot;2024-08-24T06:00:00.000+03:00&quot;}}}" data-react-cache-id="projects/ProjectMetadata-0"></div>
+
+  <div class="sm-gap clean well">
+  <h4>In a nutshell&hellip;</h4>
+  <ul>
+
+      <li>
+        <strong>Manual QA review:</strong>
+          0.0/13 mandatory
+            &
+            0.0/1 optional
+      </li>
+
+    <li>
+      <strong>Altogether:</strong>
+        &nbsp;<strong>0.0%</strong>
+        <ul>
+          <li>Mandatory: 0.0%</li>
+            <li>Optional: 0.0%</li>
+            <li>
+              Calculation:&nbsp;
+                  0.0%
+                    + (0.0% * 0.0%)
+              &nbsp;==&nbsp;<strong>0.0%</strong>
+            </li>
+        </ul>
+    </li>
+  </ul>
+
+    <strong>Overall comment:</strong>
+    <p class="text-muted">
+      Project was failed automatically.
+    </p>
+</div>
+
+
+
+
+
+
+        
+          <div class="card">
+    <h5 class="card-header">Concepts</h5>
+    <div class="card-body">
+      <p>
+        <em>For this project, we expect you to look at this concept:</em>
+      </p>
+
+      <ul>
+          <li>
+            <a href="/concepts/39">On-call</a>
+          </li>
+      </ul>
+</div></div>
+        <div class="card mb-3">
+  <div class="card-body">
+    <h2>Background Context</h2>
+
+<p><a href="https://youtu.be/rp5cVMNmbro" target="_blank"><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/294/tWUPWmR.png" alt="" loading='lazy' style="" /></a></p>
+
+<p>Any software system will eventually fail, and that failure can come stem from a wide range of possible factors: bugs, traffic spikes, security issues, hardware failures, natural disasters, human error&hellip; Failing is normal and failing is actually a great opportunity to learn and improve. Any great Software Engineer must learn from his/her mistakes to make sure that they won&rsquo;t happen again. Failing is fine, but failing twice because of the same issue is not.</p>
+
+<p>A postmortem is a tool widely used in the tech industry. After any outage, the team(s) in charge of the system will write a summary that has 2 main goals:</p>
+
+<ul>
+<li>To provide the rest of the company&rsquo;s employees easy access to information detailing the cause of the outage. Often outages can have a huge impact on a company, so managers and executives have to understand what happened and how it will impact their work.</li>
+<li>And to ensure that the root cause(s) of the outage has been discovered and that measures are taken to make sure it will be fixed.</li>
+</ul>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="/rltoken/vkEjk-M6yBWW-wyB-7-I9Q" title="Incident Report, also referred to as a Postmortem" target="_blank">Incident Report, also referred to as a Postmortem</a> </li>
+<li><a href="/rltoken/QwvgCYt2zjKRT7qMRe7I8A" title="The importance of an incident postmortem process" target="_blank">The importance of an incident postmortem process</a> </li>
+<li><a href="/rltoken/1uc8HoHECE5QANJKnmG6og" title="What is an Incident Postmortem?" target="_blank">What is an Incident Postmortem?</a></li>
+</ul>
+
+<h2>More Info</h2>
+
+<h3>Manual QA Review</h3>
+
+<p><strong>It is your responsibility to request a review for your postmortem from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.</strong></p>
+
+</div></div>
+        
+        
+
+          
+            <h2 class="mt-5">Tasks</h2>
+
+  <div class="vstack gap-5">
+      <div data-role="task1629" data-position="1" id="task-num-0">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1629">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>0. My first postmortem</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1629" data-correction-id="43590617">
+          <div class="task_progress_bar" style="width: 0.0%">
+            <div class="task_score_bar" style="width: NaN%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">0.0%</span> (<span class="task_progress_value">Checks completed: 0.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p><a href="https://twitter.com/devopsreact/status/834887829486399488" target="_blank"><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/294/pQ9YzVY.gif" alt="" loading='lazy' style="" /></a></p>
+
+<p>Using one of the web stack debugging project issue or an outage you have personally face, write a postmortem. Most of you will never have faced an outage, so just get creative and invent your own :)</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Issue Summary (that is often what executives will read) must contain:
+
+<ul>
+<li>duration of the outage with start and end times (including timezone)</li>
+<li>what was the impact (what service was down/slow? What were user experiencing? How many % of the users were affected?)</li>
+<li>what was the root cause</li>
+</ul></li>
+<li><p>Timeline (format bullet point, format: <code>time</code> - <code>keep it short, 1 or 2 sentences</code>) must contain:</p>
+
+<ul>
+<li>when was the issue detected</li>
+<li>how was the issue detected (monitoring alert, an engineer noticed something, a customer complained&hellip;)</li>
+<li>actions taken (what parts of the system were investigated, what were the assumption on the root cause of the issue)</li>
+<li>misleading investigation/debugging paths that were taken</li>
+<li>which team/individuals was the incident escalated to</li>
+<li>how the incident was resolved</li>
+</ul></li>
+<li><p>Root cause and resolution must contain:</p>
+
+<ul>
+<li>explain in detail what was causing the issue</li>
+<li>explain in detail how the issue was fixed</li>
+</ul></li>
+<li><p>Corrective and preventative measures must contain:</p>
+
+<ul>
+<li>what are the things that can be improved/fixed (broadly speaking)</li>
+<li>a list of tasks to address the issue (be very specific, like a TODO, example: patch Nginx server, add monitoring on server memory&hellip;)</li>
+</ul></li>
+<li><p>Be brief and straight to the point, between 400 to 600 words</p></li>
+</ul>
+
+<p>While postmortem format can vary, stick to this one so that you can get properly reviewed by your peers.</p>
+
+<p>Please, remember that these blogs must be written in English to further your technical ability in a variety of settings.</p>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+        <div class="list-group-item">
+          <div class="blog_post_div">
+            <h4>Add URLs here:</h4>
+
+
+            <div class="input-group">
+              <input id="input_1629" autocomplete="off" type="text" value=""  class="form-control">
+              <button data-task-requesting="0" data-user-id="283121" data-task-id="1629" type="button"  class="add_task_url btn btn-primary">
+                Save
+              </button>
+            </div>
+
+            <div class="task_url_error_msg" data-task-id="1629"></div>
+
+            <ol class="list_1629 sm-gap">
+            </ol>
+
+          </div>
+        </div>
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x19-postmortem</code></li>
+              <li>File: <code>README.md</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-1629-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1629}" data-task-id="1629" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1629-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1629-modal" tabindex="-1" data-correction-id="43590617" data-task-id="1629"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1629-modal-label">0. My first postmortem</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+  </div>
+
+    <form class="d-grid mt-5" method="post" action="/projects/294/unlock_optionals"><input class="btn btn-primary" data-confirm="Are you sure? Make sure you focused on the mandatory tasks first" data-disable-with="Unlocking 1 advanced task..." data-gtm-custom-event-name="project_unlock_advanced_tasks" id="unlock_optional_btn" type="submit" value="Done with the mandatory tasks? Unlock 1 advanced task now!" /><input type="hidden" name="authenticity_token" value="m3fyxza45pYkgZAlXCKpfvZubz_zbjzHhC89n_6cxB9z3DYtKhII47tzk_u0iZafgDwI4b02vmQPtYmBmYV-Pw" autocomplete="off" /></form>
+
+
+              <div data-react-class="projects/ProjectReadyForReview" data-react-props="{&quot;csrfToken&quot;:&quot;EpVjNstCjHcj64pmAKFokD2h_RdEwY3IjlxXCKLYvu7m5O-T4HMrweJpgMpDGZfk_ASZHxRbGb5LX729oP8fgg&quot;,&quot;firstReview&quot;:false,&quot;peerReview&quot;:{&quot;availableReviewersURI&quot;:&quot;/corrections/43590617/available_reviewers.json&quot;,&quot;canReviewPeerDirectly&quot;:true,&quot;cancelReadyForReviewURI&quot;:&quot;/corrections/43590617/cancel_ready_for_review.json&quot;,&quot;closeAt&quot;:&quot;2024-08-24T06:00:00.000+03:00&quot;,&quot;correctCorrectionURI&quot;:&quot;https://savanna.alxafrica.com/corrections/43590617/correct&quot;,&quot;disabled&quot;:false,&quot;manualReviewBehavior&quot;:&quot;any_student&quot;,&quot;nbReviewsAvailable&quot;:null,&quot;openAt&quot;:&quot;2024-08-12T06:00:00.000+03:00&quot;,&quot;qaReviewsURI&quot;:&quot;/corrections/to_review&quot;,&quot;readyForReviewURI&quot;:&quot;/corrections/43590617/toggle_ready_for_review.json&quot;,&quot;synchronousManualReview&quot;:false},&quot;toggled&quot;:false}" data-react-cache-id="projects/ProjectReadyForReview-0"></div>
+
+
+    </div>
+  </div>
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+      </article>
+
+        <div class="copyright">Copyright © 2025 ALX, All rights reserved.</div>
+
+    </main>
+
+        <button data-bs-target="#search-modal" data-bs-toggle="modal" data-search-active="false" type="button" class="btn btn-primary atop-help" id="search-button">    <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+    <i aria-hidden="true" class="fa-solid fa-window-minimize"></i>
+</button><div aria-hidden="true" aria-labelledby="search-modal-label" class="modal fade" id="search-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header d-block">    <div class="position-relative">
+      <input id="search-bar"
+              autocomplete="off"
+              type="text"
+              placeholder="Search ...">
+    </div>
+</div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="vstack gap-4" id="search-results-container"></div>
+</div></div></div></div>
+
+
+        <div aria-hidden="true" aria-labelledby="markdown-guide-modal-label" class="modal modal-lg fade" id="markdown-guide-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="markdown-guide-modal-label">Markdown guide</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>> This is a quote.
+> It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+</div></div></div></div>
+
+        <script id="cody-snippet">
+          window.codySettings = { widget_id: "9993bc72-2258-452b-a4bf-b2fe1ad5e0d7" };
+          !function(){var t=window,e=document,a=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://trinketsofcody.com/cody-widget.js";var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?a():t.attachEvent?t.attachEvent("onload",a):t.addEventListener("load",a,!1)}();
+        </script>
+  </body>
+</html>

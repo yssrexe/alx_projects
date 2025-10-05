@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+      <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({"userId":283121,"visitorType":"student","batch":{"id":158,"fullNameWithC":"AFR-1123 (C#22)","schoolLocation":{"id":1,"name":"ALX Africa"}},"curriculum":{"id":1,"name":"SE Foundations"}});
+
+    window.gtm_user_custom_event = function (name, options) {
+      if (typeof name === 'undefined') {
+        return;
+      }
+
+      window.dataLayer.push({
+        customEventOptions: typeof options !== 'undefined' ? options : {},
+        event: name,
+      });
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N4C8MF2');</script>
+  <!-- End Google Tag Manager -->
+
+    
+
+    <title>Project: 0x15. API | ALX Africa Intranet</title>
+
+      <link rel="stylesheet" href="https://use.typekit.net/xgz4ilr.css">
+      <link rel="stylesheet" media="all" href="/assets/application_alx-86c669cec6c3a27a798acc634b0f2159b34933cb3bcdaa861f67d1191f26a702.css" />
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="/favicon_alx.ico" />
+      <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="rgFMTabiIEmLsUGnERm0FetKw_Negplnt-Su4REmI95acMDojdOH_0ozSwtSoUthKu-n-w4YDRFy50RUEwGCsg" />
+
+      <link rel="apple-touch-icon" href="/apple-touch-icon_alx.png">
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <!-- Store user timezone -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof Cookies !== 'undefined') {
+            Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+          }
+        });
+      </script>
+
+
+      <!-- React -->
+      <script src="/assets/app-62a46ee6509545cef217c1976df7d2651b54efc2a1247209fa6431afd6b8e488.js" data-turbo-track="reload" defer="defer"></script>
+<script src="/assets/sprockets-c0e56a0d20ac74bcb4df5e9aab8ca9f5adc008dd64356339a335587588218637.js" data-turbo-track="reload" defer="defer"></script>
+      <link rel="stylesheet" media="all" href="/assets/app-af63263adaa999d5979ab3c38d7593c2f2fa24a49bf2b26030dd08b56149029e.css" />
+
+
+  </head>
+
+  <body class="signed_in env_production notranslate"
+        translate="no"
+        class="notranslate"
+        data-theme-suffix="_alx">
+      <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4C8MF2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+      <div data-react-class="header/Header" data-react-props="{&quot;csrfToken&quot;:&quot;YPVO8MKF1QtqlHHCbI3qiRhVdzoOO9RJP9JF4hgfZR-UhMJV6bRyvasWe24vNRX92fATMl6hQD_60a9XGjjEcw&quot;,&quot;ehubHeaderSdkJsUrl&quot;:null,&quot;logoUrl&quot;:&quot;https://savanna.alxafrica.com/assets/holberton-logo-full-alx-d053727941512ebe04b797ca87d81a195004e9ff2d8a6aedf4004c5365cf8944.png&quot;,&quot;logoutUrl&quot;:&quot;/auth/sign_out&quot;,&quot;logoClickUrl&quot;:&quot;/&quot;,&quot;redirectUrl&quot;:&quot;/auth/sign_in&quot;,&quot;discord&quot;:{&quot;label&quot;:&quot;Discord&quot;,&quot;targetUrl&quot;:&quot;https://discord.com/channels/1148581179084243054&quot;,&quot;linkOpts&quot;:{&quot;target&quot;:&quot;_blank&quot;,&quot;rel&quot;:&quot;noreferrer&quot;}},&quot;user&quot;:{&quot;myProfileUrl&quot;:&quot;/users/my_profile&quot;,&quot;profilePictureUrl&quot;:&quot;https://savanna.alxafrica.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeWU1RWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--763c97b55afcc1d18e11a0200045fce081ae5b13/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/yael-yas.jpg&quot;},&quot;listItems&quot;:[{&quot;label&quot;:&quot;My Planning&quot;,&quot;iconName&quot;:&quot;calendar&quot;,&quot;targetUrl&quot;:&quot;/planning/me&quot;},{&quot;label&quot;:&quot;Projects&quot;,&quot;iconName&quot;:&quot;code-fork&quot;,&quot;targetUrl&quot;:&quot;/projects/current&quot;,&quot;id&quot;:&quot;sidebar-current-projects-item&quot;},{&quot;label&quot;:&quot;QA Reviews I can make&quot;,&quot;iconName&quot;:&quot;check&quot;,&quot;targetUrl&quot;:&quot;/corrections/to_review&quot;},{&quot;label&quot;:&quot;Evaluation quizzes&quot;,&quot;iconName&quot;:&quot;question&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_current_evaluation_quizzes&quot;},{&quot;label&quot;:&quot;My resources&quot;},{&quot;label&quot;:&quot;My courses&quot;,&quot;iconName&quot;:&quot;graduation-cap&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_curriculums&quot;},{&quot;label&quot;:&quot;Concepts&quot;,&quot;iconName&quot;:&quot;file-text&quot;,&quot;targetUrl&quot;:&quot;/concepts&quot;,&quot;id&quot;:&quot;sidebar-concepts-item&quot;},{&quot;label&quot;:&quot;Conference rooms&quot;,&quot;iconName&quot;:&quot;comments&quot;,&quot;targetUrl&quot;:&quot;/dashboards/video_rooms&quot;,&quot;id&quot;:&quot;sidebar-dashboards-video-rooms&quot;},{&quot;label&quot;:&quot;Servers&quot;,&quot;iconName&quot;:&quot;server&quot;,&quot;targetUrl&quot;:&quot;/servers&quot;},{&quot;label&quot;:&quot;Sandboxes&quot;,&quot;iconName&quot;:&quot;terminal&quot;,&quot;targetUrl&quot;:&quot;/user_containers/current&quot;,&quot;id&quot;:&quot;sidebar-dashboards-my-containers&quot;},{&quot;label&quot;:&quot;Tools&quot;,&quot;iconName&quot;:&quot;wrench&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_tools&quot;},{&quot;label&quot;:&quot;Video on demand&quot;,&quot;iconName&quot;:&quot;film&quot;,&quot;targetUrl&quot;:&quot;/dashboards/videos&quot;},{&quot;label&quot;:&quot;My Campus&quot;},{&quot;label&quot;:&quot;Peers&quot;,&quot;iconName&quot;:&quot;users&quot;,&quot;targetUrl&quot;:&quot;/users/peers&quot;}]}" data-react-cache-id="header/Header-0"></div>
+
+
+    <main class="content" id="content">
+        
+
+        <div id="layout-bars">
+          
+          <div class="px-5 py-3" id="student-switch-curriculum">
+  <div class="btn-group">
+    <div class="align-items-center d-flex gap-3" aria-expanded="false" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button">
+      <div class="d-flex flex-column" style="line-height: 16px">
+        <span class="fs-4 fw-semibold" style="font-size: 15px !important;">
+          SE Foundations
+        </span>
+        <span class="fs-sm text-muted">
+          Average: <span class="fw-medium">109.87%</span>
+        </span>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center">
+        <span style="margin-bottom: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-up fa-fw"></i>
+        </span>
+        <span style="margin-top: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-down fa-fw"></i>
+        </span>
+      </div>
+</div>
+    <ul class="dropdown-menu-400 fs-5 dropdown-menu">
+        <li><a class="dropdown-item" href="/curriculums/1/observe">
+          <div class="align-items-center d-flex py-2">
+            <div class="d-flex flex-column" style="line-height: 16px">
+              <span class="fs-4 fw-medium" style="font-size: 15px !important;">
+                SE Foundations
+              </span>
+              <span class="text-muted" style="font-size: 14px !important;">
+                Average: <span class="fw-medium">109.87%</span>
+              </span>
+            </div>
+
+              <span class="fw-semibold text-info" style="margin-left: 42px">
+                <i aria-hidden="true" class="fa-solid fa-check"></i>
+              </span>
+          </div>
+</a></li></ul></div></div>
+
+          
+          
+        </div>
+
+      <article class="">
+
+        
+  <div class="d-flex flex-wrap">
+
+    <div class="flex-grow-1" id="curriculum_navigation_content">
+      
+<div class="project row">
+  <div class="col-12 col-xl-10 contains-images">
+    <div id="project_id" style="display: none" data-project-id="269"></div>
+
+    <div class="vstack gap-3">
+        <div class="hstack gap-3 justify-content-between">
+    <h1 class="m-0">
+      0x15. API
+      
+    </h1>
+
+  </div>
+
+  <div data-react-class="tags/Tags" data-react-props="{&quot;tags&quot;:[{&quot;id&quot;:19,&quot;value&quot;:&quot;Python&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:28,&quot;value&quot;:&quot;Scripting&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:35,&quot;value&quot;:&quot;Back-end&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:36,&quot;value&quot;:&quot;API&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;}]}" data-react-cache-id="tags/Tags-0"></div>
+
+  <div data-react-class="projects/ProjectMetadata" data-react-props="{&quot;metadata&quot;:{&quot;weight&quot;:1,&quot;has_ai_grader&quot;:false,&quot;correction&quot;:{&quot;released&quot;:true,&quot;requires_auto_correction&quot;:true,&quot;requires_manual_correction&quot;:false},&quot;bpi&quot;:{&quot;current&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2024-07-29T06:00:00.000+03:00&quot;,&quot;ends_at&quot;:&quot;2024-07-30T06:00:00.000+03:00&quot;,&quot;second_deadline_at&quot;:&quot;2024-08-01T06:00:00.000+03:00&quot;}}}" data-react-cache-id="projects/ProjectMetadata-0"></div>
+
+  <div class="sm-gap clean well">
+  <h4>In a nutshell&hellip;</h4>
+  <ul>
+
+
+      <li>
+        <strong>Auto QA review:</strong>
+          16.1/21 mandatory
+      </li>
+    <li>
+      <strong>Altogether:</strong>
+        &nbsp;<strong>76.67%</strong>
+        <ul>
+          <li>Mandatory: 76.67%</li>
+            <li>Optional: no optional tasks</li>
+        </ul>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+        
+          <div class="card">
+    <h5 class="card-header">Concepts</h5>
+    <div class="card-body">
+      <p>
+        <em>For this project, we expect you to look at this concept:</em>
+      </p>
+
+      <ul>
+          <li>
+            <a href="/concepts/102042">Portfolio Project Deeper Overview</a>
+          </li>
+      </ul>
+</div></div>
+        <div class="card mb-3">
+  <div class="card-body">
+    <h2>Background Context</h2>
+
+<p><a href="https://youtu.be/-2kyU6-j8ZQ" target="_blank"><img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2019/6/897638f42eb1bad6605d.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20251005%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251005T144338Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a3812eab97be8998ce10436645cb71fa74bfc67106e40d25e9aaa9326165323e" alt="" loading='lazy' style="" /></a></p>
+
+<p>Old-school system administrators usually only know Bash and that is what they use to build their scripts. While Bash is perfectly fine for a lot of things, it can quickly get messy and not efficient compared to other programming languages. The new generation of system administrators, usually called SREs, are pretty much regular software engineers but instead of building products, they are managing systems. And one of the big differences with their predecessors is that they know more than just Bash scripting.</p>
+
+<p>One popular way to expose an application and dataset is to use an API. Often, they are the public facing part of websites and micro-services so that allow outsiders to interact with them &ndash; access and modify their data. In this project, you will access employee data via an API to organize and export them to different data structures.</p>
+
+<p>This is a perfect example of a task that is not suited for Bash scripting, so let&rsquo;s build Python scripts.</p>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="/rltoken/KMFzqRAqedMf7AHHBD_43g" title="Friends don&#39;t let friends program in shell script" target="_blank">Friends don&rsquo;t let friends program in shell script</a> </li>
+<li><a href="/rltoken/zeBO6_RNTlwaotyRRNAzoQ" title="What is an API" target="_blank">What is an API</a> </li>
+<li><a href="/rltoken/bf09Qp6QY44CANLzxxRbPA" title="What is an API? In English, please" target="_blank">What is an API? In English, please</a></li>
+<li><a href="/rltoken/fA164QWEnZxaSngBD3EPRQ" title="What is a REST API" target="_blank">What is a REST API</a> </li>
+<li><a href="/rltoken/n4h77IbBuDxTE3bhes_AyQ" title="What are microservices" target="_blank">What are microservices</a> </li>
+<li><a href="/rltoken/b7V1ROY6kSRxDDKnsJoqxg" title="PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry" target="_blank">PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry</a> </li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>At the end of this project, you are expected to be able to <a href="/rltoken/03Evn5VsICwJUAiTdu0zHA" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+
+<h3>General</h3>
+
+<ul>
+<li>What Bash scripting should not be used for</li>
+<li>What is an API</li>
+<li>What is a REST API</li>
+<li>What are microservices</li>
+<li>What is the CSV format</li>
+<li>What is the JSON format</li>
+<li>Pythonic Package and module name style</li>
+<li>Pythonic Class name style</li>
+<li>Pythonic Variable name style</li>
+<li>Pythonic Function name style</li>
+<li>Pythonic Constant name style</li>
+<li>Significance of CapWords or CamelCase in Python</li>
+</ul>
+
+<h3>Copyright - Plagiarism</h3>
+
+<ul>
+<li>You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.</li>
+<li>You will not be able to meet the objectives of this or any following project by copying and pasting someone else&rsquo;s work. </li>
+<li>You are not allowed to publish any content of this project.</li>
+<li>Any form of plagiarism is strictly forbidden and will result in removal from the program.</li>
+</ul>
+
+<h2>Requirements</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)</li>
+<li>All your files should end with a new line</li>
+<li>The first line of all your files should be exactly <code>#!/usr/bin/python3</code></li>
+<li><strong>Libraries imported in your Python files must be organized in alphabetical order</strong></li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>Your code should use the pycodestyle (version <code>2.8.*</code>)</li>
+<li>All your files must be executable</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+<li>All your modules should have a documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).__doc__)&#39;</code>)</li>
+<li>You must use <a href="/rltoken/CNqOWPW6mdYuK7Ak-f2KHQ" title="get" target="_blank">get</a> to access to dictionary value by key (it won&rsquo;t throw an exception if the key doesn&rsquo;t exist in the dictionary)</li>
+<li>Your code should not be executed when imported (by using <code>if __name__ == &quot;__main__&quot;:</code>)</li>
+</ul>
+
+</div></div>
+        
+        
+
+          
+            <h2 class="mt-5">Tasks</h2>
+
+  <div class="vstack gap-5">
+      <div data-role="task1732" data-position="1" id="task-num-0">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1732">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>0. Gather data from an API</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1732" data-correction-id="34603568">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a Python script that, using this <a href="/rltoken/7cr7aLYdaWAZWBKrBKS12A" title="REST API" target="_blank">REST API</a>, for a given employee ID, returns information about his/her TODO list progress.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>You must use <code>urllib</code> or <code>requests</code> module</li>
+<li>The script must accept an integer as a parameter, which is the employee ID</li>
+<li>The script must display on the standard output the employee TODO list progress in this exact format:
+
+<ul>
+<li>First line: <code>Employee EMPLOYEE_NAME is done with tasks(NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):</code>
+
+<ul>
+<li><code>EMPLOYEE_NAME</code>: name of the employee</li>
+<li><code>NUMBER_OF_DONE_TASKS</code>: number of completed tasks</li>
+<li><code>TOTAL_NUMBER_OF_TASKS</code>: total number of tasks, which is the sum of completed and non-completed tasks</li>
+</ul></li>
+<li>Second and N next lines display the title of completed tasks: <code>TASK_TITLE</code> (with 1 tabulation and 1 space before the <code>TASK_TITLE</code>)</li>
+</ul></li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>sylvain@ubuntu$ python3 0-gather_data_from_an_API.py 2
+Employee Ervin Howell is done with tasks(8/20):
+     distinctio vitae autem nihil ut molestias quo
+     voluptas quo tenetur perspiciatis explicabo natus
+     aliquam aut quasi
+     veritatis pariatur delectus
+     nemo perspiciatis repellat ut dolor libero commodi blanditiis omnis
+     repellendus veritatis molestias dicta incidunt
+     excepturi deleniti adipisci voluptatem et neque optio illum ad
+     totam atque quo nesciunt
+sylvain@ubuntu$ python3 0-gather_data_from_an_API.py 4
+Employee Patricia Lebsack is done with tasks(6/20):
+     odit optio omnis qui sunt
+     doloremque aut dolores quidem fuga qui nulla
+     sint amet quia totam corporis qui exercitationem commodi
+     sequi dolorem sed
+     eum ipsa maxime ut
+     tempore molestias dolores rerum sequi voluptates ipsum consequatur
+sylvain@ubuntu$
+sylvain@ubuntu$ python3 0-gather_data_from_an_API.py 4 | tr &quot; &quot; &quot;S&quot; | tr &quot;\t&quot; &quot;T&quot; 
+EmployeeSPatriciaSLebsackSisSdoneSwithStasks(6/20):
+TSoditSoptioSomnisSquiSsunt
+TSdoloremqueSautSdoloresSquidemSfugaSquiSnulla
+TSsintSametSquiaStotamScorporisSquiSexercitationemScommodi
+TSsequiSdoloremSsed
+TSeumSipsaSmaximeSut
+TStemporeSmolestiasSdoloresSrerumSsequiSvoluptatesSipsumSconsequatur
+sylvain@ubuntu$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x15-api</code></li>
+              <li>File: <code>0-gather_data_from_an_API.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1732-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1732}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1732" type="button" class="btn btn-default btn-sm check-your-task-1732-modal-button" id="task-num-0-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1732-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1732-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1732-correction-modal-label">0. Gather data from an API</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1732">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1732">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1732">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1732}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1732-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1732}" data-task-id="1732" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1732-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1732-modal" tabindex="-1" data-correction-id="34603568" data-task-id="1732"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1732-modal-label">0. Gather data from an API</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1733" data-position="2" id="task-num-1">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1733">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>1. Export to CSV</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1733" data-correction-id="34603568">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 65.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">65.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Using what you did in the task #0, extend your Python script to export data in the CSV format.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Records all tasks that are owned by this employee</li>
+<li>Format must be: <code>&quot;USER_ID&quot;,&quot;USERNAME&quot;,&quot;TASK_COMPLETED_STATUS&quot;,&quot;TASK_TITLE&quot;</code></li>
+<li>File name must be: <code>USER_ID.csv</code></li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>sylvain@ubuntu$ python3 1-export_to_CSV.py 2
+sylvain@ubuntu$ cat 2.csv
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;suscipit repellat esse quibusdam voluptatem incidunt&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;distinctio vitae autem nihil ut molestias quo&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;et itaque necessitatibus maxime molestiae qui quas velit&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;adipisci non ad dicta qui amet quaerat doloribus ea&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;voluptas quo tenetur perspiciatis explicabo natus&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;aliquam aut quasi&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;veritatis pariatur delectus&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;nesciunt totam sit blanditiis sit&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;laborum aut in quam&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;nemo perspiciatis repellat ut dolor libero commodi blanditiis omnis&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;repudiandae totam in est sint facere fuga&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;earum doloribus ea doloremque quis&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;sint sit aut vero&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;porro aut necessitatibus eaque distinctio&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;repellendus veritatis molestias dicta incidunt&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;excepturi deleniti adipisci voluptatem et neque optio illum ad&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;sunt cum tempora&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;totam quia non&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;False&quot;,&quot;doloremque quibusdam asperiores libero corrupti illum qui omnis&quot;
+&quot;2&quot;,&quot;Antonette&quot;,&quot;True&quot;,&quot;totam atque quo nesciunt&quot;
+sylvain@ubuntu$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x15-api</code></li>
+              <li>File: <code>1-export_to_CSV.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1733-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1733}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1733" type="button" class="btn btn-default btn-sm check-your-task-1733-modal-button" id="task-num-1-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1733-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1733-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1733-correction-modal-label">1. Export to CSV</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1733">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1733">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1733">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1733}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1733-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1733}" data-task-id="1733" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1733-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1733-modal" tabindex="-1" data-correction-id="34603568" data-task-id="1733"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1733-modal-label">1. Export to CSV</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1734" data-position="3" id="task-num-2">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1734">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>2. Export to JSON</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1734" data-correction-id="34603568">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 65.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">65.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Using what you did in the task #0, extend your Python script to export data in the JSON format.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Records all tasks that are owned by this employee</li>
+<li>Format must be: <code>{ &quot;USER_ID&quot;: [{&quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS, &quot;username&quot;: &quot;USERNAME&quot;}, {&quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS, &quot;username&quot;: &quot;USERNAME&quot;}, ... ]}</code></li>
+<li>File name must be: <code>USER_ID.json</code></li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>sylvain@ubuntu$ python3 2-export_to_JSON.py 2
+sylvain@ubuntu$ cat 2.json
+{&quot;2&quot;: [{&quot;task&quot;: &quot;suscipit repellat esse quibusdam voluptatem incidunt&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;distinctio vitae autem nihil ut molestias quo&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;et itaque necessitatibus maxime molestiae qui quas velit&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;adipisci non ad dicta qui amet quaerat doloribus ea&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;voluptas quo tenetur perspiciatis explicabo natus&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;aliquam aut quasi&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;veritatis pariatur delectus&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;nesciunt totam sit blanditiis sit&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;laborum aut in quam&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;nemo perspiciatis repellat ut dolor libero commodi blanditiis omnis&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;repudiandae totam in est sint facere fuga&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;earum doloribus ea doloremque quis&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;sint sit aut vero&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;porro aut necessitatibus eaque distinctio&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;repellendus veritatis molestias dicta incidunt&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;excepturi deleniti adipisci voluptatem et neque optio illum ad&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;sunt cum tempora&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;totam quia non&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;doloremque quibusdam asperiores libero corrupti illum qui omnis&quot;, &quot;completed&quot;: false, &quot;username&quot;: &quot;Antonette&quot;}, {&quot;task&quot;: &quot;totam atque quo nesciunt&quot;, &quot;completed&quot;: true, &quot;username&quot;: &quot;Antonette&quot;}]}sylvain@ubuntu$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x15-api</code></li>
+              <li>File: <code>2-export_to_JSON.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1734-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1734}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1734" type="button" class="btn btn-default btn-sm check-your-task-1734-modal-button" id="task-num-2-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1734-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1734-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1734-correction-modal-label">2. Export to JSON</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1734">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1734">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1734">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1734}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1734-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1734}" data-task-id="1734" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1734-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1734-modal" tabindex="-1" data-correction-id="34603568" data-task-id="1734"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1734-modal-label">2. Export to JSON</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1752" data-position="4" id="task-num-3">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1752">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>3. Dictionary of list of dictionaries</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1752" data-correction-id="34603568">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 65.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">65.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Using what you did in the task #0, extend your Python script to export data in the JSON format.</p>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Records all tasks from all employees</li>
+<li>Format must be: <code>{ &quot;USER_ID&quot;: [ {&quot;username&quot;: &quot;USERNAME&quot;, &quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS}, {&quot;username&quot;: &quot;USERNAME&quot;, &quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS}, ... ], &quot;USER_ID&quot;: [ {&quot;username&quot;: &quot;USERNAME&quot;, &quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS}, {&quot;username&quot;: &quot;USERNAME&quot;, &quot;task&quot;: &quot;TASK_TITLE&quot;, &quot;completed&quot;: TASK_COMPLETED_STATUS}, ... ]}</code></li>
+<li>File name must be: <code>todo_all_employees.json</code></li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>sylvain@ubuntu$ python3 3-dictionary_of_list_of_dictionaries.py
+sylvain@ubuntu$ cat todo_all_employees.json
+{&quot;1&quot;: [{&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;delectus aut autem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;quis ut nam facilis et officia qui&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;fugiat veniam minus&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;et porro tempora&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;laboriosam mollitia et enim quasi adipisci quia provident illum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;qui ullam ratione quibusdam voluptatem quia omnis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;illo expedita consequatur quia in&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;quo adipisci enim quam ut ab&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;molestiae perspiciatis ipsa&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;illo est ratione doloremque quia maiores aut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;vero rerum temporibus dolor&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;ipsa repellendus fugit nisi&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;et doloremque nulla&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;repellendus sunt dolores architecto voluptatum&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;ab voluptatum amet voluptas&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;accusamus eos facilis sint et aut voluptatem&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;quo laboriosam deleniti aut qui&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;dolorum est consequatur ea mollitia in culpa&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;molestiae ipsa aut voluptatibus pariatur dolor nihil&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Bret&quot;, &quot;task&quot;: &quot;ullam nobis libero sapiente ad optio sint&quot;, &quot;completed&quot;: true}], &quot;2&quot;: [{&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;suscipit repellat esse quibusdam voluptatem incidunt&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;distinctio vitae autem nihil ut molestias quo&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;et itaque necessitatibus maxime molestiae qui quas velit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;adipisci non ad dicta qui amet quaerat doloribus ea&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;voluptas quo tenetur perspiciatis explicabo natus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;aliquam aut quasi&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;veritatis pariatur delectus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;nesciunt totam sit blanditiis sit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;laborum aut in quam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;nemo perspiciatis repellat ut dolor libero commodi blanditiis omnis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;repudiandae totam in est sint facere fuga&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;earum doloribus ea doloremque quis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;sint sit aut vero&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;porro aut necessitatibus eaque distinctio&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;repellendus veritatis molestias dicta incidunt&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;excepturi deleniti adipisci voluptatem et neque optio illum ad&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;sunt cum tempora&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;totam quia non&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;doloremque quibusdam asperiores libero corrupti illum qui omnis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Antonette&quot;, &quot;task&quot;: &quot;totam atque quo nesciunt&quot;, &quot;completed&quot;: true}], &quot;3&quot;: [{&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;aliquid amet impedit consequatur aspernatur placeat eaque fugiat suscipit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;rerum perferendis error quia ut eveniet&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;tempore ut sint quis recusandae&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;cum debitis quis accusamus doloremque ipsa natus sapiente omnis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;velit soluta adipisci molestias reiciendis harum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;vel voluptatem repellat nihil placeat corporis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;nam qui rerum fugiat accusamus&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;sit reprehenderit omnis quia&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;ut necessitatibus aut maiores debitis officia blanditiis velit et&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;cupiditate necessitatibus ullam aut quis dolor voluptate&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;distinctio exercitationem ab doloribus&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;nesciunt dolorum quis recusandae ad pariatur ratione&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;qui labore est occaecati recusandae aliquid quam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;quis et est ut voluptate quam dolor&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;voluptatum omnis minima qui occaecati provident nulla voluptatem ratione&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;deleniti ea temporibus enim&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;pariatur et magnam ea doloribus similique voluptatem rerum quia&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;est dicta totam qui explicabo doloribus qui dignissimos&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;perspiciatis velit id laborum placeat iusto et aliquam odio&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Samantha&quot;, &quot;task&quot;: &quot;et sequi qui architecto ut adipisci&quot;, &quot;completed&quot;: true}], &quot;4&quot;: [{&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;odit optio omnis qui sunt&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;et placeat et tempore aspernatur sint numquam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;doloremque aut dolores quidem fuga qui nulla&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;voluptas consequatur qui ut quia magnam nemo esse&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;fugiat pariatur ratione ut asperiores necessitatibus magni&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;rerum eum molestias autem voluptatum sit optio&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;quia voluptatibus voluptatem quos similique maiores repellat&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;aut id perspiciatis voluptatem iusto&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;doloribus sint dolorum ab adipisci itaque dignissimos aliquam suscipit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;ut sequi accusantium et mollitia delectus sunt&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;aut velit saepe ullam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;praesentium facilis facere quis harum voluptatibus voluptatem eum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;sint amet quia totam corporis qui exercitationem commodi&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;expedita tempore nobis eveniet laborum maiores&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;occaecati adipisci est possimus totam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;sequi dolorem sed&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;maiores aut nesciunt delectus exercitationem vel assumenda eligendi at&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;reiciendis est magnam amet nemo iste recusandae impedit quaerat&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;eum ipsa maxime ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Karianne&quot;, &quot;task&quot;: &quot;tempore molestias dolores rerum sequi voluptates ipsum consequatur&quot;, &quot;completed&quot;: true}], &quot;5&quot;: [{&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;suscipit qui totam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;voluptates eum voluptas et dicta&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;quidem at rerum quis ex aut sit quam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;sunt veritatis ut voluptate&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;et quia ad iste a&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;incidunt ut saepe autem&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;laudantium quae eligendi consequatur quia et vero autem&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;vitae aut excepturi laboriosam sint aliquam et et accusantium&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;sequi ut omnis et&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;molestiae nisi accusantium tenetur dolorem et&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;nulla quis consequatur saepe qui id expedita&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;in omnis laboriosam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;odio iure consequatur molestiae quibusdam necessitatibus quia sint&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;facilis modi saepe mollitia&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;vel nihil et molestiae iusto assumenda nemo quo ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;nobis suscipit ducimus enim asperiores voluptas&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;dolorum laboriosam eos qui iure aliquam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;debitis accusantium ut quo facilis nihil quis sapiente necessitatibus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;neque voluptates ratione&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Kamren&quot;, &quot;task&quot;: &quot;excepturi a et neque qui expedita vel voluptate&quot;, &quot;completed&quot;: false}], &quot;6&quot;: [{&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;explicabo enim cumque porro aperiam occaecati minima&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;sed ab consequatur&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;non sunt delectus illo nulla tenetur enim omnis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;excepturi non laudantium quo&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;totam quia dolorem et illum repellat voluptas optio&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;ad illo quis voluptatem temporibus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;praesentium facilis omnis laudantium fugit ad iusto nihil nesciunt&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;a eos eaque nihil et exercitationem incidunt delectus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;autem temporibus harum quisquam in culpa&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;aut aut ea corporis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;magni accusantium labore et id quis provident&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;consectetur impedit quisquam qui deserunt non rerum consequuntur eius&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;quia atque aliquam sunt impedit voluptatum rerum assumenda nisi&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;cupiditate quos possimus corporis quisquam exercitationem beatae&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;sed et ea eum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;ipsa dolores vel facilis ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;sequi quae est et qui qui eveniet asperiores&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;quia modi consequatur vero fugiat&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;corporis ducimus ea perspiciatis iste&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Leopoldo_Corkery&quot;, &quot;task&quot;: &quot;dolorem laboriosam vel voluptas et aliquam quasi&quot;, &quot;completed&quot;: false}], &quot;7&quot;: [{&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;inventore aut nihil minima laudantium hic qui omnis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;provident aut nobis culpa&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;esse et quis iste est earum aut impedit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;qui consectetur id&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;aut quasi autem iste tempore illum possimus&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;ut asperiores perspiciatis veniam ipsum rerum saepe&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;voluptatem libero consectetur rerum ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;eius omnis est qui voluptatem autem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;rerum culpa quis harum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;nulla aliquid eveniet harum laborum libero alias ut unde&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;qui ea incidunt quis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;qui molestiae voluptatibus velit iure harum quisquam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;et labore eos enim rerum consequatur sunt&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;molestiae doloribus et laborum quod ea&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;facere ipsa nam eum voluptates reiciendis vero qui&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;asperiores illo tempora fuga sed ut quasi adipisci&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;qui sit non&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;placeat minima consequatur rem qui ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;consequatur doloribus id possimus voluptas a voluptatem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Elwyn.Skiles&quot;, &quot;task&quot;: &quot;aut consectetur in blanditiis deserunt quia sed laboriosam&quot;, &quot;completed&quot;: true}], &quot;8&quot;: [{&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;explicabo consectetur debitis voluptates quas quae culpa rerum non&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;maiores accusantium architecto necessitatibus reiciendis ea aut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;eum non recusandae cupiditate animi&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;ut eum exercitationem sint&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;beatae qui ullam incidunt voluptatem non nisi aliquam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;molestiae suscipit ratione nihil odio libero impedit vero totam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;eum itaque quod reprehenderit et facilis dolor autem ut&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;esse quas et quo quasi exercitationem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;animi voluptas quod perferendis est&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;eos amet tempore laudantium fugit a&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;accusamus adipisci dicta qui quo ea explicabo sed vero&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;odit eligendi recusandae doloremque cumque non&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;ea aperiam consequatur qui repellat eos&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;rerum non ex sapiente&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;voluptatem nobis consequatur et assumenda magnam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;nam quia quia nulla repellat assumenda quibusdam sit nobis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;dolorem veniam quisquam deserunt repellendus&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;debitis vitae delectus et harum accusamus aut deleniti a&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;debitis adipisci quibusdam aliquam sed dolore ea praesentium nobis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Maxime_Nienow&quot;, &quot;task&quot;: &quot;et praesentium aliquam est&quot;, &quot;completed&quot;: false}], &quot;9&quot;: [{&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;ex hic consequuntur earum omnis alias ut occaecati culpa&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;omnis laboriosam molestias animi sunt dolore&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;natus corrupti maxime laudantium et voluptatem laboriosam odit&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;reprehenderit quos aut aut consequatur est sed&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;fugiat perferendis sed aut quidem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;quos quo possimus suscipit minima ut&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;et quis minus quo a asperiores molestiae&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;recusandae quia qui sunt libero&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;ea odio perferendis officiis&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;quisquam aliquam quia doloribus aut&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;fugiat aut voluptatibus corrupti deleniti velit iste odio&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;et provident amet rerum consectetur et voluptatum&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;harum ad aperiam quis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;similique aut quo&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;laudantium eius officia perferendis provident perspiciatis asperiores&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;magni soluta corrupti ut maiores rem quidem&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;et placeat temporibus voluptas est tempora quos quibusdam&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;nesciunt itaque commodi tempore&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;omnis consequuntur cupiditate impedit itaque ipsam quo&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Delphine&quot;, &quot;task&quot;: &quot;debitis nisi et dolorem repellat et&quot;, &quot;completed&quot;: true}], &quot;10&quot;: [{&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;ut cupiditate sequi aliquam fuga maiores&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;inventore saepe cumque et aut illum enim&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;omnis nulla eum aliquam distinctio&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;molestias modi perferendis perspiciatis&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;voluptates dignissimos sed doloribus animi quaerat aut&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;explicabo odio est et&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;consequuntur animi possimus&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;vel non beatae est&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;culpa eius et voluptatem et&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;accusamus sint iusto et voluptatem exercitationem&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;temporibus atque distinctio omnis eius impedit tempore molestias pariatur&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;ut quas possimus exercitationem sint voluptates&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;rerum debitis voluptatem qui eveniet tempora distinctio a&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;sed ut vero sit molestiae&quot;, &quot;completed&quot;: false}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;rerum ex veniam mollitia voluptatibus pariatur&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;consequuntur aut ut fugit similique&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;dignissimos quo nobis earum saepe&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;quis eius est sint explicabo&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;numquam repellendus a magnam&quot;, &quot;completed&quot;: true}, {&quot;username&quot;: &quot;Moriah.Stanton&quot;, &quot;task&quot;: &quot;ipsam aperiam voluptates qui&quot;, &quot;completed&quot;: false}]}sylvain@ubuntu$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>alx-system_engineering-devops</code></li>
+              <li>Directory: <code>0x15-api</code></li>
+              <li>File: <code>3-dictionary_of_list_of_dictionaries.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1752-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1752}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1752" type="button" class="btn btn-default btn-sm check-your-task-1752-modal-button" id="task-num-3-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1752-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1752-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1752-correction-modal-label">3. Dictionary of list of dictionaries</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1752">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1752">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1752">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1752}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1752-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1752}" data-task-id="1752" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1752-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1752-modal" tabindex="-1" data-correction-id="34603568" data-task-id="1752"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1752-modal-label">3. Dictionary of list of dictionaries</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+  </div>
+
+
+
+
+            <div aria-hidden="true" aria-labelledby="container-specs-modal-label" class="modal modal-lg fade" id="container-specs-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="container-specs-modal-label">Recommended Sandbox</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><div data-react-class="user_containers/ContainerSpecs" data-react-props="{&quot;containerModelName&quot;:&quot;Sandbox&quot;,&quot;containerSpecs&quot;:[{&quot;available&quot;:true,&quot;description&quot;:&quot;\u003cp\u003eBasic Ubuntu 20.04, with vim, emacs, curl, wget and all needed for Foundations\u003c/p\u003e\n&quot;,&quot;id&quot;:39,&quot;name&quot;:&quot;Ubuntu 20.04&quot;,&quot;online&quot;:true}],&quot;containersLimit&quot;:2,&quot;csrfToken&quot;:&quot;uoxYWvRWz-hQ595UnI9r_qXbGovi02MbmMQdYLXytDtO_dT_32doXpFl1PjfN5SKZH5-g7JJ921dx_fVt9UVVw&quot;,&quot;startStatusURI&quot;:&quot;/user_containers/start_status.json&quot;,&quot;startURI&quot;:&quot;/user_containers/start.json&quot;}" data-react-cache-id="user_containers/ContainerSpecs-0"></div></div></div></div></div>
+
+    </div>
+  </div>
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+      </article>
+
+        <div class="copyright">Copyright © 2025 ALX, All rights reserved.</div>
+
+    </main>
+
+        <button data-bs-target="#search-modal" data-bs-toggle="modal" data-search-active="false" type="button" class="btn btn-primary atop-help" id="search-button">    <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+    <i aria-hidden="true" class="fa-solid fa-window-minimize"></i>
+</button><div aria-hidden="true" aria-labelledby="search-modal-label" class="modal fade" id="search-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header d-block">    <div class="position-relative">
+      <input id="search-bar"
+              autocomplete="off"
+              type="text"
+              placeholder="Search ...">
+    </div>
+</div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="vstack gap-4" id="search-results-container"></div>
+</div></div></div></div>
+
+
+        <div aria-hidden="true" aria-labelledby="markdown-guide-modal-label" class="modal modal-lg fade" id="markdown-guide-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="markdown-guide-modal-label">Markdown guide</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>> This is a quote.
+> It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+</div></div></div></div>
+
+        <script id="cody-snippet">
+          window.codySettings = { widget_id: "9993bc72-2258-452b-a4bf-b2fe1ad5e0d7" };
+          !function(){var t=window,e=document,a=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://trinketsofcody.com/cody-widget.js";var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?a():t.attachEvent?t.attachEvent("onload",a):t.addEventListener("load",a,!1)}();
+        </script>
+  </body>
+</html>
