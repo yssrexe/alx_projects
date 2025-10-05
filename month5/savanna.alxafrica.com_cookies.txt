@@ -1,7 +1,0 @@
-# Netscape HTTP Cookie File
-# http://curl.haxx.se/rfc/cookie_spec.html
-# This is a generated file!  Do not edit.
-
-savanna.alxafrica.com	FALSE	/	FALSE	0	timezone	1
-savanna.alxafrica.com	FALSE	/	TRUE	0	context_curriculum_id	eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1RPT0iLCJleHAiOm51bGwsInB1ciI6ImNvb2tpZS5jb250ZXh0X2N1cnJpY3VsdW1faWQifX0%3D--13a16f95b6e3ae5baf1d5fad5b62fd25b7316e16
-savanna.alxafrica.com	FALSE	/	TRUE	0	_holberton_intranet_session	VusCJTwuPOmfRSBVwhcMoFYLVHfiGb2mFkXUzpPfrM4WmOQzsijiFNQIBQpQ7ZCQ19emJx7%2BGWzOK3GGD4JpXFKOlnGRogX4FclchUbt7s6LW9lUVigiatIK5%2BgEkZKY7oZOozoQiwqjBhGRhW0Iu08LruamoXO9mdE7eaqid4h%2FaTxXBX31KJsYvVljmS%2FiKC2LcmZKn%2FYi26VkAk3tOYCnib91CZIxX%2FlJxj9InAPSVvL48LVBTUsTN2vLG14CFA0k%2FYYhc7ZfrO%2B8LjNZS2HNwUt%2B5nURmgOyGNxLyz3f5Uul5cdoMAk8maBSxRzLSQFs40qaB1v%2FcilKaLzpPwl5DnDz1ND3%2F5iL%2BWGZqL0jMh6VVUr%2Bg5eHFvM%2FfKE8LgIJFH4gZoz%2BRDoyFhf%2BsuZdPbEF0Bq0%2B3%2B9XpY4ms7xOK9NIYp%2BhTVEL%2BZzZmKwHk4Ag103p%2FfUIHIRVZ6I9WWW5JV8vFU%3D--WxEPtvGNfoN0kLnc--MTXDLHpNO%2FnktyuoN23O8A%3D%3D
