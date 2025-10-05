@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+      <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({"userId":283121,"visitorType":"student","batch":{"id":158,"fullNameWithC":"AFR-1123 (C#22)","schoolLocation":{"id":1,"name":"ALX Africa"}},"curriculum":{"id":1,"name":"SE Foundations"}});
+
+    window.gtm_user_custom_event = function (name, options) {
+      if (typeof name === 'undefined') {
+        return;
+      }
+
+      window.dataLayer.push({
+        customEventOptions: typeof options !== 'undefined' ? options : {},
+        event: name,
+      });
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N4C8MF2');</script>
+  <!-- End Google Tag Manager -->
+
+    
+
+    <title>Project: 0x02. AirBnB clone - MySQL | ALX Africa Intranet</title>
+
+      <link rel="stylesheet" href="https://use.typekit.net/xgz4ilr.css">
+      <link rel="stylesheet" media="all" href="https://savanna.alxafrica.com/assets/application_alx-86c669cec6c3a27a798acc634b0f2159b34933cb3bcdaa861f67d1191f26a702.css" />
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="https://savanna.alxafrica.com/favicon_alx.ico" />
+      <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="rCwLASP4J8ZQbBDtP7A26RqNjznoJU8VzW8RSd8IyHpsU4K1D1hmUkHK15dbpk-UxiX9teFVA3Q_tXnYWqwrIg" />
+
+      <link rel="apple-touch-icon" href="https://savanna.alxafrica.com/apple-touch-icon_alx.png">
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <!-- Store user timezone -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof Cookies !== 'undefined') {
+            Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+          }
+        });
+      </script>
+
+
+      <!-- React -->
+      <script src="https://savanna.alxafrica.com/assets/app-62a46ee6509545cef217c1976df7d2651b54efc2a1247209fa6431afd6b8e488.js" data-turbo-track="reload" defer="defer"></script>
+<script src="https://savanna.alxafrica.com/assets/sprockets-c0e56a0d20ac74bcb4df5e9aab8ca9f5adc008dd64356339a335587588218637.js" data-turbo-track="reload" defer="defer"></script>
+      <link rel="stylesheet" media="all" href="https://savanna.alxafrica.com/assets/app-af63263adaa999d5979ab3c38d7593c2f2fa24a49bf2b26030dd08b56149029e.css" />
+
+
+  </head>
+
+  <body class="signed_in env_production notranslate"
+        translate="no"
+        class="notranslate"
+        data-theme-suffix="_alx">
+      <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4C8MF2"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+      <div data-react-class="header/Header" data-react-props="{&quot;csrfToken&quot;:&quot;uHK8uRUgV8IKFzmJjpFG1INp9UmScOgVQ3zj_g9SMp54DTUNOYAWVhux_vPqhz-pX8GHxZsApHSxpotvivbRxg&quot;,&quot;ehubHeaderSdkJsUrl&quot;:null,&quot;logoUrl&quot;:&quot;https://savanna.alxafrica.com/assets/holberton-logo-full-alx-d053727941512ebe04b797ca87d81a195004e9ff2d8a6aedf4004c5365cf8944.png&quot;,&quot;logoutUrl&quot;:&quot;/auth/sign_out&quot;,&quot;logoClickUrl&quot;:&quot;/&quot;,&quot;redirectUrl&quot;:&quot;/auth/sign_in&quot;,&quot;discord&quot;:{&quot;label&quot;:&quot;Discord&quot;,&quot;targetUrl&quot;:&quot;https://discord.com/channels/1148581179084243054&quot;,&quot;linkOpts&quot;:{&quot;target&quot;:&quot;_blank&quot;,&quot;rel&quot;:&quot;noreferrer&quot;}},&quot;user&quot;:{&quot;myProfileUrl&quot;:&quot;/users/my_profile&quot;,&quot;profilePictureUrl&quot;:&quot;https://savanna.alxafrica.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeWU1RWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--763c97b55afcc1d18e11a0200045fce081ae5b13/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/yael-yas.jpg&quot;},&quot;listItems&quot;:[{&quot;label&quot;:&quot;My Planning&quot;,&quot;iconName&quot;:&quot;calendar&quot;,&quot;targetUrl&quot;:&quot;/planning/me&quot;},{&quot;label&quot;:&quot;Projects&quot;,&quot;iconName&quot;:&quot;code-fork&quot;,&quot;targetUrl&quot;:&quot;/projects/current&quot;,&quot;id&quot;:&quot;sidebar-current-projects-item&quot;},{&quot;label&quot;:&quot;QA Reviews I can make&quot;,&quot;iconName&quot;:&quot;check&quot;,&quot;targetUrl&quot;:&quot;/corrections/to_review&quot;},{&quot;label&quot;:&quot;Evaluation quizzes&quot;,&quot;iconName&quot;:&quot;question&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_current_evaluation_quizzes&quot;},{&quot;label&quot;:&quot;My resources&quot;},{&quot;label&quot;:&quot;My courses&quot;,&quot;iconName&quot;:&quot;graduation-cap&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_curriculums&quot;},{&quot;label&quot;:&quot;Concepts&quot;,&quot;iconName&quot;:&quot;file-text&quot;,&quot;targetUrl&quot;:&quot;/concepts&quot;,&quot;id&quot;:&quot;sidebar-concepts-item&quot;},{&quot;label&quot;:&quot;Conference rooms&quot;,&quot;iconName&quot;:&quot;comments&quot;,&quot;targetUrl&quot;:&quot;/dashboards/video_rooms&quot;,&quot;id&quot;:&quot;sidebar-dashboards-video-rooms&quot;},{&quot;label&quot;:&quot;Servers&quot;,&quot;iconName&quot;:&quot;server&quot;,&quot;targetUrl&quot;:&quot;/servers&quot;},{&quot;label&quot;:&quot;Sandboxes&quot;,&quot;iconName&quot;:&quot;terminal&quot;,&quot;targetUrl&quot;:&quot;/user_containers/current&quot;,&quot;id&quot;:&quot;sidebar-dashboards-my-containers&quot;},{&quot;label&quot;:&quot;Tools&quot;,&quot;iconName&quot;:&quot;wrench&quot;,&quot;targetUrl&quot;:&quot;/dashboards/my_tools&quot;},{&quot;label&quot;:&quot;Video on demand&quot;,&quot;iconName&quot;:&quot;film&quot;,&quot;targetUrl&quot;:&quot;/dashboards/videos&quot;},{&quot;label&quot;:&quot;My Campus&quot;},{&quot;label&quot;:&quot;Peers&quot;,&quot;iconName&quot;:&quot;users&quot;,&quot;targetUrl&quot;:&quot;/users/peers&quot;}]}" data-react-cache-id="header/Header-0"></div>
+
+
+    <main class="content" id="content">
+        
+
+        <div id="layout-bars">
+          
+          <div class="px-5 py-3" id="student-switch-curriculum">
+  <div class="btn-group">
+    <div class="align-items-center d-flex gap-3" aria-expanded="false" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button">
+      <div class="d-flex flex-column" style="line-height: 16px">
+        <span class="fs-4 fw-semibold" style="font-size: 15px !important;">
+          SE Foundations
+        </span>
+        <span class="fs-sm text-muted">
+          Average: <span class="fw-medium">109.87%</span>
+        </span>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center">
+        <span style="margin-bottom: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-up fa-fw"></i>
+        </span>
+        <span style="margin-top: -4px">
+          <i aria-hidden="true" class="fa-solid fa-angle-down fa-fw"></i>
+        </span>
+      </div>
+</div>
+    <ul class="dropdown-menu-400 fs-5 dropdown-menu">
+        <li><a class="dropdown-item" href="https://savanna.alxafrica.com/curriculums/1/observe">
+          <div class="align-items-center d-flex py-2">
+            <div class="d-flex flex-column" style="line-height: 16px">
+              <span class="fs-4 fw-medium" style="font-size: 15px !important;">
+                SE Foundations
+              </span>
+              <span class="text-muted" style="font-size: 14px !important;">
+                Average: <span class="fw-medium">109.87%</span>
+              </span>
+            </div>
+
+              <span class="fw-semibold text-info" style="margin-left: 42px">
+                <i aria-hidden="true" class="fa-solid fa-check"></i>
+              </span>
+          </div>
+</a></li></ul></div></div>
+
+          
+          
+        </div>
+
+      <article class="">
+
+        
+  <div class="d-flex flex-wrap">
+
+    <div class="flex-grow-1" id="curriculum_navigation_content">
+      
+<div class="project row">
+  <div class="col-12 col-xl-10 contains-images">
+    <div id="project_id" style="display: none" data-project-id="289"></div>
+
+    <div class="vstack gap-3">
+        <div class="hstack gap-3 justify-content-between">
+    <h1 class="m-0">
+      0x02. AirBnB clone - MySQL
+      
+    </h1>
+
+  </div>
+
+  <div data-react-class="tags/Tags" data-react-props="{&quot;tags&quot;:[{&quot;id&quot;:16,&quot;value&quot;:&quot;Group project&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:19,&quot;value&quot;:&quot;Python&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:27,&quot;value&quot;:&quot;OOP&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:35,&quot;value&quot;:&quot;Back-end&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:37,&quot;value&quot;:&quot;SQL&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:38,&quot;value&quot;:&quot;MySQL&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:40,&quot;value&quot;:&quot;ORM&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:41,&quot;value&quot;:&quot;SQLAlchemy&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;}]}" data-react-cache-id="tags/Tags-0"></div>
+
+  <div data-react-class="projects/ProjectMetadata" data-react-props="{&quot;metadata&quot;:{&quot;weight&quot;:2,&quot;has_ai_grader&quot;:false,&quot;correction&quot;:{&quot;released&quot;:true,&quot;requires_auto_correction&quot;:true,&quot;requires_manual_correction&quot;:false},&quot;bpi&quot;:{&quot;current&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2024-06-21T06:00:00.000+03:00&quot;,&quot;ends_at&quot;:&quot;2024-06-27T06:00:00.000+03:00&quot;,&quot;second_deadline_at&quot;:&quot;2024-06-30T06:00:00.000+03:00&quot;},&quot;team&quot;:{&quot;in_team_of&quot;:2}}}" data-react-cache-id="projects/ProjectMetadata-0"></div>
+
+  <div class="sm-gap clean well">
+  <h4>In a nutshell&hellip;</h4>
+  <ul>
+
+
+      <li>
+        <strong>Auto QA review:</strong>
+          136.5/191 mandatory
+      </li>
+    <li>
+      <strong>Altogether:</strong>
+        &nbsp;<strong>71.47%</strong>
+        <ul>
+          <li>Mandatory: 71.47%</li>
+            <li>Optional: no optional tasks</li>
+        </ul>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+        
+        
+        <div class="card mb-3">
+  <div class="card-body">
+    <h2>Background Context</h2>
+
+<p>Environment variables will be your best friend for this project!</p>
+
+<ul>
+<li><code>HBNB_ENV</code>: running environment. It can be &ldquo;dev&rdquo; or &ldquo;test&rdquo; for the moment (&ldquo;production&rdquo; soon!)</li>
+<li><code>HBNB_MYSQL_USER</code>: the username of your MySQL</li>
+<li><code>HBNB_MYSQL_PWD</code>: the password of your MySQL</li>
+<li><code>HBNB_MYSQL_HOST</code>: the hostname of your MySQL</li>
+<li><code>HBNB_MYSQL_DB</code>: the database name of your MySQL</li>
+<li><code>HBNB_TYPE_STORAGE</code>: the type of storage used. It can be &ldquo;file&rdquo; (using <code>FileStorage</code>) or <code>db</code> (using <code>DBStorage</code>)</li>
+</ul>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="https://savanna.alxafrica.com/rltoken/OG2OW5Pbjs-ds3ZHT0ow4g" title="cmd module" target="_blank">cmd module</a> </li>
+<li><strong>packages</strong> concept page</li>
+<li><a href="https://savanna.alxafrica.com/rltoken/g0tzN6ea1hWCj5OF99HB9w" title="unittest module" target="_blank">unittest module</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/F6YRBSrkkkTTMVc66iaMgA" title="args/kwargs" target="_blank">args/kwargs</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/GYWCmxokUZKAr-T93iQPcQ" title="SQLAlchemy tutorial" target="_blank">SQLAlchemy tutorial</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/m4ogDCoKVm3Us0FybYh1tA" title="How To Create a New User and Grant Permissions in MySQL" target="_blank">How To Create a New User and Grant Permissions in MySQL</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/FJCSaX1TCf0HAOzhsH_eWA" title="Python3 and environment variables" target="_blank">Python3 and environment variables</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/bWxESLJVYGNonjOYg8fOVg" title="SQLAlchemy" target="_blank">SQLAlchemy</a> </li>
+<li><a href="https://savanna.alxafrica.com/rltoken/n6ePnCDwnbQMbxGgeoe1VA" title="MySQL 8.0 SQL Statement Syntax" target="_blank">MySQL 8.0 SQL Statement Syntax</a> </li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>At the end of this project, you are expected to be able to <a href="https://savanna.alxafrica.com/rltoken/3nWKduPHOPRUFGNEtT-SMw" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+
+<h3>General</h3>
+
+<ul>
+<li>What is Unit testing and how to implement it in a large project</li>
+<li>What is <code>*args</code> and how to use it</li>
+<li>What is <code>**kwargs</code> and how to use it</li>
+<li>How to handle named arguments in a function</li>
+<li>How to create a MySQL database</li>
+<li>How to create a MySQL user and grant it privileges</li>
+<li>What ORM means</li>
+<li>How to map a Python Class to a MySQL table</li>
+<li>How to handle 2 different storage engines with the same codebase</li>
+<li>How to use environment variables</li>
+</ul>
+
+<h3>Copyright - Plagiarism</h3>
+
+<ul>
+<li>You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.</li>
+<li>You will not be able to meet the objectives of this or any following project by copying and pasting someone else&rsquo;s work. </li>
+<li>You are not allowed to publish any content of this project.</li>
+<li>Any form of plagiarism is strictly forbidden and will result in removal from the program.</li>
+</ul>
+
+<h2>Requirements</h2>
+
+<h3>Python Scripts</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)</li>
+<li>All your files should end with a new line</li>
+<li>The first line of all your files should be exactly <code>#!/usr/bin/python3</code></li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>Your code should use the pycodestyle (version <code>2.8.*</code>)</li>
+<li>All your files must be executable</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+<li>All your modules should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).__doc__)&#39;</code>)</li>
+<li>All your classes should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).MyClass.__doc__)&#39;</code>)</li>
+<li>All your functions (inside and outside a class) should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).my_function.__doc__)&#39;</code> and <code>python3 -c &#39;print(__import__(&quot;my_module&quot;).MyClass.my_function.__doc__)&#39;</code>)</li>
+<li>A documentation is not a simple word, it&rsquo;s a real sentence explaining what&rsquo;s the purpose of the module, class or method (the length of it will be verified)</li>
+</ul>
+
+<h3>Python Unit Tests</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files should end with a new line</li>
+<li>All your test files should be inside a folder <code>tests</code></li>
+<li>You have to use the <a href="https://savanna.alxafrica.com/rltoken/g0tzN6ea1hWCj5OF99HB9w" title="unittest module" target="_blank">unittest module</a> </li>
+<li>All your test files should be python files (extension: <code>.py</code>)</li>
+<li>All your test files and folders should start by <code>test_</code></li>
+<li>Your file organization in the tests folder should be the same as your project: ex: for <code>models/base_model.py</code>, unit tests must be in: <code>tests/test_models/test_base_model.py</code></li>
+<li>All your tests should be executed by using this command: <code>python3 -m unittest discover tests</code></li>
+<li>You can also test file by file by using this command: <code>python3 -m unittest tests/test_models/test_base_model.py</code></li>
+<li>All your modules should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).__doc__)&#39;</code>)</li>
+<li>All your classes should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).MyClass.__doc__)&#39;</code>)</li>
+<li>All your functions (inside and outside a class) should have documentation (<code>python3 -c &#39;print(__import__(&quot;my_module&quot;).my_function.__doc__)&#39;</code> and <code>python3 -c &#39;print(__import__(&quot;my_module&quot;).MyClass.my_function.__doc__)&#39;</code>)</li>
+<li>We strongly encourage you to work together on test cases, so that you don&rsquo;t miss any edge cases</li>
+</ul>
+
+<h3>SQL Scripts</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be executed on Ubuntu 20.04 LTS using <code>MySQL 8.0</code></li>
+<li>Your files will be executed with <code>SQLAlchemy</code> version <code>1.4.x</code></li>
+<li>All your files should end with a new line</li>
+<li>All your SQL queries should have a comment just before (i.e. syntax above)</li>
+<li>All your files should start by a comment describing the task</li>
+<li>All SQL keywords should be in uppercase (<code>SELECT</code>, <code>WHERE</code>&hellip;)</li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+</ul>
+
+<h3>GitHub</h3>
+
+<p><strong>There should be one project repository per group. If you clone/fork/whatever a partner&rsquo;s project repository with the same name before the second deadline, you risk a 0% score.</strong></p>
+
+<h2>More Info</h2>
+
+<p><img src="https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step2.png" alt="" loading='lazy' style="" /></p>
+
+<h3>Comments for your SQL file:</h3>
+
+<pre><code>$ cat my_script.sql
+-- first 3 students in the Batch ID=3
+-- because Batch 3 is the best!
+SELECT id, name FROM students WHERE batch_id = 3 ORDER BY created_at DESC LIMIT 3;
+$
+</code></pre>
+
+</div></div>
+          <div data-react-class="videos/PlayerLibrary" data-react-props="{&quot;canManageVideos&quot;:false,&quot;videos&quot;:[{&quot;description&quot;:&quot;\u003cp\u003eHow in the AirBnB clone project storage is managed: File and Database\u003c/p\u003e\n&quot;,&quot;id&quot;:41,&quot;poster&quot;:null,&quot;shortDescription&quot;:&quot;How in the AirBnB clone project storage is managed&quot;,&quot;source&quot;:&quot;/video_releases/41.m3u8&quot;,&quot;title&quot;:&quot;HBNB - storage abstraction&quot;},{&quot;description&quot;:&quot;\u003cp\u003eOverview of the Console part of the project AirBnB Clone\u003c/p\u003e\n&quot;,&quot;id&quot;:42,&quot;poster&quot;:null,&quot;shortDescription&quot;:&quot;Overview of the Console part of the project AirBnB Clone&quot;,&quot;source&quot;:&quot;/video_releases/42.m3u8&quot;,&quot;title&quot;:&quot;AirBnB console&quot;}]}" data-react-cache-id="videos/PlayerLibrary-0"></div>
+
+        
+
+          
+            <h2 class="mt-5">Tasks</h2>
+
+  <div class="vstack gap-5">
+      <div data-role="task1606" data-position="1" id="task-num-0">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1606">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>0. Fork me if you can!</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1606" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>In the industry, you will work on an existing codebase 90% of the time. Your first thoughts upon looking at it might include:</p>
+
+<ul>
+<li>&ldquo;Who did this code?&rdquo;</li>
+<li>&ldquo;How it works?&rdquo;</li>
+<li>&ldquo;Where are unittests?&rdquo;</li>
+<li>&ldquo;Where is this?&rdquo;</li>
+<li>&ldquo;Why did they do that like this?&rdquo;</li>
+<li>&ldquo;I don&rsquo;t understand anything.&rdquo;</li>
+<li>&ldquo;&hellip; I will refactor everything&hellip;&rdquo;</li>
+</ul>
+
+<p>But the worst thing you could possibly do is to  <strong>redo everything</strong>. Please don&rsquo;t do that!
+<strong>Note: the existing codebase might be perfect, or it might have errors. Don&rsquo;t always trust the existing codebase!</strong></p>
+
+<p>For this project you will fork this <a href="https://github.com/justinmajetich/AirBnB_clone.git" title="codebase" target="_blank">codebase</a>:</p>
+
+<ul>
+<li>update the repository name to <code>AirBnB_clone_v2</code></li>
+<li>update the <code>README.md</code> with your information <strong>but don&rsquo;t delete the initial authors</strong></li>
+</ul>
+
+<p>If you are the owner of this repository, please create a new repository named <code>AirBnB_clone_v2</code> with the same content of <code>AirBnB_clone</code></p>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1606-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1606}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1606" type="button" class="btn btn-default btn-sm check-your-task-1606-modal-button" id="task-num-0-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1606-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1606-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1606-correction-modal-label">0. Fork me if you can!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1606">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1606">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1606">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1606}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1606-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1606}" data-task-id="1606" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1606-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1606-modal" tabindex="-1" data-correction-id="31487054" data-task-id="1606"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1606-modal-label">0. Fork me if you can!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2409" data-position="2" id="task-num-1">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2409">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>1. Bug free!</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2409" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 41.67%">
+            <div class="task_score_bar" style="width: 70.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">29.17%</span> (<span class="task_progress_value">Checks completed: 41.67%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Do you remember the <code>unittest</code> module?</p>
+
+<p>This codebase contains many test cases. Some are missing, but the ones included cover the basic functionality of the program.</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ python3 -m unittest discover tests 2&gt;&amp;1 /dev/null | tail -n 1
+OK
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+<p>All your unittests <strong>must</strong> pass without any errors at anytime in this project, <strong>with each storage engine!</strong>. Same for PEP8!</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ HBNB_ENV=test HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db python3 -m unittest discover tests 2&gt;&amp;1 /dev/null | tail -n 1
+OK
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+<p>Some tests won&rsquo;t be relevant for some type of storage, please skip them by using the <code>skipIf</code> feature of <a href="https://savanna.alxafrica.com/rltoken/Gx_1dJOPPeAyeM6NaXDmjg" title="the Unittest module - 26.3.6. Skipping tests and expected failures" target="_blank">the Unittest module - 26.3.6. Skipping tests and expected failures</a>. Of course, the number of tests must be higher than the current number of tests, so if you decide to skip a test, you should write a new test!</p>
+
+<h3>How to test with MySQL?</h3>
+
+<p>First, you create a specific database for it (next tasks). After, you have to remember what the purpose of an unittest?</p>
+
+<p><strong>&ldquo;Assert a current state (objects/data/database), do an action, and validate this action changed (or not) the state of your objects/data/database&rdquo;</strong></p>
+
+<p>For example, &ldquo;you want to validate that the <code>create State name=&quot;California&quot;</code> command in the console will add a new record in your table <code>states</code> in your database&rdquo;, here steps for your unittest:</p>
+
+<ul>
+<li>get the number of current records in the table <code>states</code> (my using a <code>MySQLdb</code> for example - but not SQLAlchemy (remember, you want to test if it works, so it&rsquo;s better to isolate from the system))</li>
+<li>execute the console command</li>
+<li>get (again) the number of current records in the table <code>states</code> (same method, with <code>MySQLdb</code>)</li>
+<li>if the difference is <code>+1</code> =&gt; test passed</li>
+</ul>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2409-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2409}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2409" type="button" class="btn btn-default btn-sm check-your-task-2409-modal-button" id="task-num-1-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2409-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2409-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2409-correction-modal-label">1. Bug free!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2409">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2409">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2409">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+            <button class="btn btn-primary btn-sm task_ask_new_correction " data-task-id="2409" data-correction-id="31487054">
+              Mark submission
+              <span class="in_progress_info">: in progress...</span>
+              <span class="error_occurred_info">: an error occurred</span>
+            </button>
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2409-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2409}" data-task-id="2409" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2409-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2409-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2409"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2409-modal-label">1. Bug free!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1608" data-position="3" id="task-num-2">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1608">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>2. Console improvements</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1608" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update the <code>def do_create(self, arg):</code> function of your command interpreter (<code>console.py</code>) to allow for object creation with given parameters:</p>
+
+<ul>
+<li>Command syntax: <code>create &lt;Class name&gt; &lt;param 1&gt; &lt;param 2&gt; &lt;param 3&gt;...</code></li>
+<li>Param syntax: <code>&lt;key name&gt;=&lt;value&gt;</code></li>
+<li>Value syntax:
+
+<ul>
+<li>String: <code>&quot;&lt;value&gt;&quot;</code> =&gt; starts with a double quote
+
+<ul>
+<li>any double quote inside the value must be escaped with a backslash <code>\</code></li>
+<li>all underscores <code>_</code> must be replace by spaces <code></code>. Example: You want to set the string <code>My little house</code> to the attribute <code>name</code>, your command line must be <code>name=&quot;My_little_house&quot;</code></li>
+</ul></li>
+<li>Float: <code>&lt;unit&gt;.&lt;decimal&gt;</code> =&gt; contains a dot <code>.</code></li>
+<li>Integer: <code>&lt;number&gt;</code> =&gt; default case</li>
+</ul></li>
+<li>If any parameter doesn&rsquo;t fit with these requirements or can&rsquo;t be recognized correctly by your program, it must be skipped</li>
+</ul>
+
+<p><strong>Don&rsquo;t forget to add tests for this new feature!</strong></p>
+
+<p>Also, this new feature will be tested here only with <code>FileStorage</code> engine.</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ cat test_params_create
+create State name=&quot;California&quot;
+create State name=&quot;Arizona&quot;
+all State
+
+create Place city_id=&quot;0001&quot; user_id=&quot;0001&quot; name=&quot;My_little_house&quot; number_rooms=4 number_bathrooms=2 max_guest=10 price_by_night=300 latitude=37.773972 longitude=-122.431297
+all Place
+guillaume@ubuntu:~/AirBnB_v2$ cat test_params_create | ./console.py 
+(hbnb) d80e0344-63eb-434a-b1e0-07783522124e
+(hbnb) 092c9e5d-6cc0-4eec-aab9-3c1d79cfc2d7
+(hbnb) [[State] (d80e0344-63eb-434a-b1e0-07783522124e) {&#39;id&#39;: &#39;d80e0344-63eb-434a-b1e0-07783522124e&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 842160), &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 842235), &#39;name&#39;: &#39;California&#39;}, [State] (092c9e5d-6cc0-4eec-aab9-3c1d79cfc2d7) {&#39;id&#39;: &#39;092c9e5d-6cc0-4eec-aab9-3c1d79cfc2d7&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 842779), &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 842792), &#39;name&#39;: &#39;Arizona&#39;}]
+(hbnb) (hbnb) 76b65327-9e94-4632-b688-aaa22ab8a124
+(hbnb) [[Place] (76b65327-9e94-4632-b688-aaa22ab8a124) {&#39;number_bathrooms&#39;: 2, &#39;longitude&#39;: -122.431297, &#39;city_id&#39;: &#39;0001&#39;, &#39;user_id&#39;: &#39;0001&#39;, &#39;latitude&#39;: 37.773972, &#39;price_by_night&#39;: 300, &#39;name&#39;: &#39;My little house&#39;, &#39;id&#39;: &#39;76b65327-9e94-4632-b688-aaa22ab8a124&#39;, &#39;max_guest&#39;: 10, &#39;number_rooms&#39;: 4, &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 843774), &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 4, 41, 7, 843747)}]
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>console.py, models/, tests/</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1608-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1608}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1608" type="button" class="btn btn-default btn-sm check-your-task-1608-modal-button" id="task-num-2-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1608-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1608-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1608-correction-modal-label">2. Console improvements</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1608">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1608">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1608">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1608}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1608-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1608}" data-task-id="1608" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1608-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1608-modal" tabindex="-1" data-correction-id="31487054" data-task-id="1608"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1608-modal-label">2. Console improvements</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1609" data-position="4" id="task-num-3">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1609">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>3. MySQL setup development</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1609" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a script that prepares a MySQL server for the project:</p>
+
+<ul>
+<li>A database <code>hbnb_dev_db</code></li>
+<li>A new user <code>hbnb_dev</code> (in <code>localhost</code>)</li>
+<li>The password  of <code>hbnb_dev</code> should be set to <code>hbnb_dev_pwd</code></li>
+<li><code>hbnb_dev</code> should have all privileges on the database <code>hbnb_dev_db</code> (and <strong>only this database</strong>)</li>
+<li><code>hbnb_dev</code> should have <code>SELECT</code> privilege on the database <code>performance_schema</code> (and <strong>only this database</strong>)</li>
+<li>If the database <code>hbnb_dev_db</code> or the user <code>hbnb_dev</code> already exists, your script should not fail</li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ echo &quot;SHOW DATABASES;&quot; | mysql -uhbnb_dev -p | grep hbnb_dev_db
+Enter password: 
+hbnb_dev_db
+guillaume@ubuntu:~/AirBnB_v2$ echo &quot;SHOW GRANTS FOR &#39;hbnb_dev&#39;@&#39;localhost&#39;;&quot; | mysql -uroot -p
+Enter password: 
+Grants for hbnb_dev@localhost
+GRANT USAGE ON *.* TO &#39;hbnb_dev&#39;@&#39;localhost&#39;
+GRANT SELECT ON `performance_schema`.* TO &#39;hbnb_dev&#39;@&#39;localhost&#39;
+GRANT ALL PRIVILEGES ON `hbnb_dev_db`.* TO &#39;hbnb_dev&#39;@&#39;localhost&#39;
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>setup_mysql_dev.sql</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1609-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1609}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1609" type="button" class="btn btn-default btn-sm check-your-task-1609-modal-button" id="task-num-3-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1609-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1609-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1609-correction-modal-label">3. MySQL setup development</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1609">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1609">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1609">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1609}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1609-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1609}" data-task-id="1609" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1609-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1609-modal" tabindex="-1" data-correction-id="31487054" data-task-id="1609"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1609-modal-label">3. MySQL setup development</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1615" data-position="5" id="task-num-4">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1615">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>4. MySQL setup test</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1615" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Write a script that prepares a MySQL server for the project:</p>
+
+<ul>
+<li>A database <code>hbnb_test_db</code></li>
+<li>A new user <code>hbnb_test</code> (in <code>localhost</code>)</li>
+<li>The password  of <code>hbnb_test</code> should be set to <code>hbnb_test_pwd</code></li>
+<li><code>hbnb_test</code> should have all privileges on the database <code>hbnb_test_db</code> (and <strong>only this database</strong>)</li>
+<li><code>hbnb_test</code> should have <code>SELECT</code> privilege on the database <code>performance_schema</code> (and <strong>only this database</strong>)</li>
+<li>If the database <code>hbnb_test_db</code> or the user <code>hbnb_test</code> already exists, your script should not fail</li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ cat setup_mysql_test.sql | mysql -hlocalhost -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ echo &quot;SHOW DATABASES;&quot; | mysql -uhbnb_test -p | grep hbnb_test_db
+Enter password: 
+hbnb_test_db
+guillaume@ubuntu:~/AirBnB_v2$ echo &quot;SHOW GRANTS FOR &#39;hbnb_test&#39;@&#39;localhost&#39;;&quot; | mysql -uroot -p
+Enter password: 
+Grants for hbnb_test@localhost
+GRANT USAGE ON *.* TO &#39;hbnb_test&#39;@&#39;localhost&#39;
+GRANT SELECT ON `performance_schema`.* TO &#39;hbnb_test&#39;@&#39;localhost&#39;
+GRANT ALL PRIVILEGES ON `hbnb_test_db`.* TO &#39;hbnb_test&#39;@&#39;localhost&#39;
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>setup_mysql_test.sql</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1615-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1615}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1615" type="button" class="btn btn-default btn-sm check-your-task-1615-modal-button" id="task-num-4-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1615-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1615-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1615-correction-modal-label">4. MySQL setup test</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1615">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1615">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1615">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1615}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1615-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1615}" data-task-id="1615" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1615-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1615-modal" tabindex="-1" data-correction-id="31487054" data-task-id="1615"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1615-modal-label">4. MySQL setup test</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task1610" data-position="6" id="task-num-5">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-1610">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>5. Delete object</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="1610" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 100.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">100.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update <code>FileStorage</code>: (<code>models/engine/file_storage.py</code>)</p>
+
+<ul>
+<li>Add a new public instance method: <code>def delete(self, obj=None):</code> to delete <code>obj</code> from <code>__objects</code> if it&rsquo;s inside - if <code>obj</code> is equal to <code>None</code>, the method should not do anything</li>
+<li>Update the prototype of <code>def all(self)</code> to <code>def all(self, cls=None)</code> - that returns the list of objects of one type of class. Example below with <code>State</code> - it&rsquo;s an optional filtering</li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ cat main_delete.py
+#!/usr/bin/python3
+&quot;&quot;&quot; Test delete feature
+&quot;&quot;&quot;
+from models.engine.file_storage import FileStorage
+from models.state import State
+
+fs = FileStorage()
+
+# All States
+all_states = fs.all(State)
+print(&quot;All States: {}&quot;.format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+# Create a new State
+new_state = State()
+new_state.name = &quot;California&quot;
+fs.new(new_state)
+fs.save()
+print(&quot;New State: {}&quot;.format(new_state))
+
+# All States
+all_states = fs.all(State)
+print(&quot;All States: {}&quot;.format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+# Create another State
+another_state = State()
+another_state.name = &quot;Nevada&quot;
+fs.new(another_state)
+fs.save()
+print(&quot;Another State: {}&quot;.format(another_state))
+
+# All States
+all_states = fs.all(State)
+print(&quot;All States: {}&quot;.format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])        
+
+# Delete the new State
+fs.delete(new_state)
+
+# All States
+all_states = fs.all(State)
+print(&quot;All States: {}&quot;.format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+guillaume@ubuntu:~/AirBnB_v2$ ./main_delete.py
+All States: 0
+New State: [State] (b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce) {&#39;name&#39;: &#39;California&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 32, 561137), &#39;id&#39;: &#39;b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce&#39;}
+All States: 1
+[State] (b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce) {&#39;name&#39;: &#39;California&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 32, 561137), &#39;id&#39;: &#39;b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce&#39;}
+Another State: [State] (37705d25-8903-4318-9303-6d6d336a22c1) {&#39;name&#39;: &#39;Nevada&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 34, 619133), &#39;id&#39;: &#39;37705d25-8903-4318-9303-6d6d336a22c1&#39;}
+All States: 2
+[State] (b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce) {&#39;name&#39;: &#39;California&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 32, 561137), &#39;id&#39;: &#39;b0026fc6-116f-4d1a-a9cb-6bb9b299f1ce&#39;}
+[State] (37705d25-8903-4318-9303-6d6d336a22c1) {&#39;name&#39;: &#39;Nevada&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 34, 619133), &#39;id&#39;: &#39;37705d25-8903-4318-9303-6d6d336a22c1&#39;}
+All States: 1
+[State] (37705d25-8903-4318-9303-6d6d336a22c1) {&#39;name&#39;: &#39;Nevada&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 13, 34, 619133), &#39;id&#39;: &#39;37705d25-8903-4318-9303-6d6d336a22c1&#39;}
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/engine/file_storage.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-1610-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1610}" data-gtm-custom-event-name="task_checker_modal" data-task-id="1610" type="button" class="btn btn-default btn-sm check-your-task-1610-modal-button" id="task-num-5-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-1610-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-1610-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-1610-correction-modal-label">5. Delete object</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="1610">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="1610">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="1610">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          <button class="btn btn-default btn-sm" data-bs-target="#container-specs-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_sandbox_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1610}"><i aria-hidden="true" class="fa-solid fa-terminal"></i><span>Get a sandbox</span></button>
+
+            
+<button data-bs-target="#task-qa-review-1610-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:1610}" data-task-id="1610" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-1610-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-1610-modal" tabindex="-1" data-correction-id="31487054" data-task-id="1610"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-1610-modal-label">5. Delete object</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2649" data-position="8" id="task-num-6">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2649">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>6. DBStorage - States and Cities</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2649" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 59.38%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">59.38%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>SQLAlchemy will be your best friend!</p>
+
+<p>It&rsquo;s time to change your storage engine and use <code>SQLAlchemy</code></p>
+
+<p><img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/daaef631636b40e0a279a8f240703e065f9d3481.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20251005%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251005T154432Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f5ed2ab6fadda1003c92291d742adb106ec416880dc1dc6aa9f358a8664beecc" alt="" loading='lazy' style="" /></p>
+
+<p>In the following steps, you will make multiple changes:</p>
+
+<ul>
+<li>the biggest one is the transition between <code>FileStorage</code> and <code>DBStorage</code>: In the industry, you will never find a system who can work with both in the same time - but you will find a lot of services who can manage multiple storage systems. (for example, logs service: in memory, in disk, in database, in ElasticSearch etc&hellip;) - The main concept behind is the <strong>abstraction</strong>: Make your code running without knowing how it&rsquo;s stored.</li>
+<li>add attributes for SQLAlchemy: they will be class attributes, like previously, with a &ldquo;weird&rdquo; value. Don&rsquo;t worry, these values are for description and mapping to the database. If you change one of these values, or add/remove one attribute of the a model, you will have to delete the database and recreate it in SQL. (Yes it&rsquo;s not optimal, but for development purposes, it&rsquo;s ok. In production, we will add &ldquo;migration mechanism&rdquo; - for the moment, don&rsquo;t spend time on it.)</li>
+</ul>
+
+<p>Please follow all these steps:</p>
+
+<p>Update <code>BaseModel</code>: (<code>models/base_model.py</code>)</p>
+
+<ul>
+<li>Create <code>Base = declarative_base()</code> before the class definition of <code>BaseModel</code></li>
+<li><strong>Note! BaseModel does /not/ inherit from Base. All other classes will inherit from BaseModel to get common values (id, <code>created_at</code>, <code>updated_at</code>), where inheriting from Base will actually cause SQLAlchemy to attempt to map it to a table.</strong></li>
+<li>Add or replace in the class <code>BaseModel</code>:
+
+<ul>
+<li>class attribute <code>id</code>
+
+<ul>
+<li>represents a column containing a unique string (60 characters)</li>
+<li>can&rsquo;t be null</li>
+<li>primary key</li>
+</ul></li>
+<li>class attribute <code>created_at</code>
+
+<ul>
+<li>represents a column containing a datetime</li>
+<li>can&rsquo;t be null</li>
+<li>default value is the current datetime (use <code>datetime.utcnow()</code>)</li>
+</ul></li>
+<li>class attribute <code>updated_at</code>
+
+<ul>
+<li>represents a column containing a datetime</li>
+<li>can&rsquo;t be null</li>
+<li>default value is the current datetime (use <code>datetime.utcnow()</code>)</li>
+</ul></li>
+</ul></li>
+<li>Move the <code>models.storage.new(self)</code> from <code>def __init__(self, *args, **kwargs):</code> to <code>def save(self):</code> and call it just before <code>models.storage.save()</code></li>
+<li>In <code>def __init__(self, *args, **kwargs):</code>, manage <code>kwargs</code> to create instance attribute from this dictionary. Ex: <code>kwargs={ &#39;name&#39;: &quot;California&quot; }</code> =&gt; <code>self.name = &quot;California&quot;</code> if it&rsquo;s not already the case</li>
+<li>Update the <code>to_dict()</code> method of the class <code>BaseModel</code>:
+
+<ul>
+<li>remove the key <code>_sa_instance_state</code> from the dictionary returned by this method <strong>only if this key exists</strong></li>
+</ul></li>
+<li>Add a new public instance method: <code>def delete(self):</code> to delete the current instance from the storage (<code>models.storage</code>) by calling the method <code>delete</code> </li>
+</ul>
+
+<p>Update <code>City</code>: (<code>models/city.py</code>)</p>
+
+<ul>
+<li><code>City</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>City</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code> -
+
+<ul>
+<li>represents the table name, <code>cities</code></li>
+</ul></li>
+<li>class attribute <code>name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters)</li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>state_id</code>
+
+<ul>
+<li>represents a column containing a string (60 characters)</li>
+<li>can&rsquo;t be null</li>
+<li>is a foreign key to <code>states.id</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Update <code>State</code>: (<code>models/state.py</code>)</p>
+
+<ul>
+<li><code>State</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>State</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code>
+
+<ul>
+<li>represents the table name, <code>states</code></li>
+</ul></li>
+<li>class attribute <code>name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters)</li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>for <code>DBStorage</code>: class attribute <code>cities</code> must represent a relationship with the class <code>City</code>. If the <code>State</code> object is deleted, all linked <code>City</code> objects must be automatically deleted. Also, the reference from a <code>City</code> object to his <code>State</code> should be named <code>state</code></li>
+<li>for <code>FileStorage</code>: getter attribute <code>cities</code> that returns the list of <code>City</code> instances with <code>state_id</code> equals to the current <code>State.id</code> =&gt; It will be the <code>FileStorage</code> relationship between <code>State</code> and <code>City</code></li>
+</ul></li>
+</ul>
+
+<p>New engine <code>DBStorage</code>: (<code>models/engine/db_storage.py</code>)</p>
+
+<ul>
+<li>Private class attributes:
+
+<ul>
+<li><code>__engine</code>: set to <code>None</code></li>
+<li><code>__session</code>: set to <code>None</code></li>
+</ul></li>
+<li>Public instance methods:
+
+<ul>
+<li><code>__init__(self):</code>
+
+<ul>
+<li>create the engine (<code>self.__engine</code>)</li>
+<li>the engine must be linked to the MySQL database and user created before (<code>hbnb_dev</code> and <code>hbnb_dev_db</code>):
+
+<ul>
+<li>dialect: <code>mysql</code></li>
+<li>driver: <code>mysqldb</code></li>
+</ul></li>
+<li>all of the following values must be retrieved via environment variables:
+
+<ul>
+<li>MySQL user: <code>HBNB_MYSQL_USER</code></li>
+<li>MySQL password: <code>HBNB_MYSQL_PWD</code></li>
+<li>MySQL host: <code>HBNB_MYSQL_HOST</code> (here = <code>localhost</code>)</li>
+<li>MySQL database: <code>HBNB_MYSQL_DB</code></li>
+</ul></li>
+<li>don&rsquo;t forget the option <code>pool_pre_ping=True</code> when you call <code>create_engine</code></li>
+<li>drop all tables if the environment variable <code>HBNB_ENV</code> is equal to <code>test</code></li>
+</ul></li>
+<li><code>all(self, cls=None)</code>:
+
+<ul>
+<li>query on the current database session (<code>self.__session</code>) all objects depending of the class name (argument <code>cls</code>)</li>
+<li>if <code>cls=None</code>, query all types of objects (<code>User</code>, <code>State</code>, <code>City</code>, <code>Amenity</code>, <code>Place</code> and <code>Review</code>)</li>
+<li>this method must return a dictionary: (like <code>FileStorage</code>)
+
+<ul>
+<li>key = <code>&lt;class-name&gt;.&lt;object-id&gt;</code></li>
+<li>value = object</li>
+</ul></li>
+</ul></li>
+<li><code>new(self, obj)</code>: add the object to the current database session (<code>self.__session</code>)</li>
+<li><code>save(self)</code>: commit all changes of the current database session (<code>self.__session</code>)</li>
+<li><code>delete(self, obj=None)</code>: delete from the current database session <code>obj</code> if not <code>None</code></li>
+<li><code>reload(self)</code>:
+
+<ul>
+<li>create all tables in the database (feature of SQLAlchemy) (WARNING: all classes who inherit from <code>Base</code> must be imported before calling <code>Base.metadata.create_all(engine)</code>)</li>
+<li>create the current database session (<code>self.__session</code>) from the engine (<code>self.__engine</code>) by using a <a href="https://savanna.alxafrica.com/rltoken/FhKkGICnmM0DN4TrlfJw3g" title="sessionmaker" target="_blank">sessionmaker</a> - the option <code>expire_on_commit</code> must be set to <code>False</code> ; and <a href="https://savanna.alxafrica.com/rltoken/kSil6Cs0L7bWTXNJTrk9yw" title="scoped_session" target="_blank">scoped_session</a> - to make sure your Session is thread-safe</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Update <code>__init__.py</code>: (<code>models/__init__.py</code>)</p>
+
+<ul>
+<li>Add a conditional depending of the value of the environment variable <code>HBNB_TYPE_STORAGE</code>:
+
+<ul>
+<li>If equal to <code>db</code>:
+
+<ul>
+<li>Import <code>DBStorage</code> class in this file</li>
+<li>Create an instance of <code>DBStorage</code> and store it in the variable <code>storage</code> (the line <code>storage.reload()</code> should be executed after this instantiation)</li>
+</ul></li>
+<li>Else:
+
+<ul>
+<li>Import <code>FileStorage</code> class in this file</li>
+<li>Create an instance of <code>FileStorage</code> and store it in the variable <code>storage</code> (the line <code>storage.reload()</code> should be executed after this instantiation)</li>
+</ul></li>
+</ul></li>
+<li>This &ldquo;switch&rdquo; will allow you to change storage type directly by using an environment variable (example below)</li>
+</ul>
+
+<p>State creation:</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create State name=&quot;California&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) 95a5abab-aa65-4861-9bc6-1da4a36069aa
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;all State&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) [[State] (95a5abab-aa65-4861-9bc6-1da4a36069aa) {&#39;name&#39;: &#39;California&#39;, &#39;id&#39;: &#39;95a5abab-aa65-4861-9bc6-1da4a36069aa&#39;, &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 0, 49, 54), &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 0, 49, 54)}]
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM states\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: 95a5abab-aa65-4861-9bc6-1da4a36069aa
+created_at: 2017-11-10 00:49:54
+updated_at: 2017-11-10 00:49:54
+      name: California
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+<p>City creation:</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create City state_id=&quot;95a5abab-aa65-4861-9bc6-1da4a36069aa&quot; name=&quot;San_Francisco&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+(hbnb) 4b457e66-c7c8-4f63-910f-fd91c3b7140b
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;all City&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) [[City] (4b457e66-c7c8-4f63-910f-fd91c3b7140b) {&#39;id&#39;: &#39;4b457e66-c7c8-4f63-910f-fd91c3b7140b&#39;, &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 0, 52, 53), &#39;state_id&#39;: &#39;95a5abab-aa65-4861-9bc6-1da4a36069aa&#39;, &#39;name&#39;: &#39;San Francisco&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 0, 52, 53)]
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create City state_id=&quot;95a5abab-aa65-4861-9bc6-1da4a36069aa&quot; name=&quot;San_Jose&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+(hbnb) a7db3cdc-30e0-4d80-ad8c-679fe45343ba
+(hbnb)
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM cities\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: 4b457e66-c7c8-4f63-910f-fd91c3b7140b
+created_at: 2017-11-10 00:52:53
+updated_at: 2017-11-10 00:52:53
+      name: San Francisco
+  state_id: 95a5abab-aa65-4861-9bc6-1da4a36069aa
+*************************** 2. row ***************************
+        id: a7db3cdc-30e0-4d80-ad8c-679fe45343ba
+created_at: 2017-11-10 00:53:19
+updated_at: 2017-11-10 00:53:19
+      name: San Jose
+  state_id: 95a5abab-aa65-4861-9bc6-1da4a36069aa
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/base_model.py, models/city.py, models/state.py, models/engine/db_storage.py, models/__init__.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2649-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2649}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2649" type="button" class="btn btn-default btn-sm check-your-task-2649-modal-button" id="task-num-6-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2649-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2649-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2649-correction-modal-label">6. DBStorage - States and Cities</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2649">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2649">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2649">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2649-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2649}" data-task-id="2649" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2649-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2649-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2649"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2649-modal-label">6. DBStorage - States and Cities</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2650" data-position="9" id="task-num-7">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2650">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>7. DBStorage - User</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2650" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 50.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">50.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update <code>User</code>: (<code>models/user.py</code>)</p>
+
+<ul>
+<li><code>User</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>User</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code>
+
+<ul>
+<li>represents the table name, <code>users</code></li>
+</ul></li>
+<li>class attribute <code>email</code>
+
+<ul>
+<li>represents a column containing a string (128 characters) </li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>password</code>
+
+<ul>
+<li>represents a column containing a string (128 characters) </li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>first_name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters) </li>
+<li>can be null</li>
+</ul></li>
+<li>class attribute <code>last_name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters) </li>
+<li>can be null</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create User email=&quot;gui@hbtn.io&quot; password=&quot;guipwd&quot; first_name=&quot;Guillaume&quot; last_name=&quot;Snow&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) 4f3f4b42-a4c3-4c20-a492-efff10d00c0b
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;all User&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) [[User] (4f3f4b42-a4c3-4c20-a492-efff10d00c0b) {&#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 1, 17, 26), &#39;id&#39;: &#39;4f3f4b42-a4c3-4c20-a492-efff10d00c0b&#39;, &#39;last_name&#39;: &#39;Snow&#39;, &#39;first_name&#39;: &#39;Guillaume&#39;, &#39;email&#39;: &#39;gui@hbtn.io&#39;, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 17, 26), &#39;password&#39;: &#39;f4ce007d8e84e0910fbdd7a06fa1692d&#39;}]
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM users\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: 4f3f4b42-a4c3-4c20-a492-efff10d00c0b
+created_at: 2017-11-10 01:17:26
+updated_at: 2017-11-10 01:17:26
+     email: gui@hbtn.io
+  password: guipwd
+first_name: Guillaume
+ last_name: Snow
+guillaume@ubuntu:~/AirBnB_v2$
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/user.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2650-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2650}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2650" type="button" class="btn btn-default btn-sm check-your-task-2650-modal-button" id="task-num-7-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2650-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2650-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2650-correction-modal-label">7. DBStorage - User</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2650">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2650">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2650">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2650-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2650}" data-task-id="2650" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2650-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2650-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2650"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2650-modal-label">7. DBStorage - User</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2651" data-position="10" id="task-num-8">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2651">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>8. DBStorage - Place</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2651" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 53.13%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">53.13%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update <code>Place</code>: (<code>models/place.py</code>)</p>
+
+<ul>
+<li><code>Place</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>Place</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code> 
+
+<ul>
+<li>represents the table name, <code>places</code></li>
+</ul></li>
+<li>class attribute <code>city_id</code>
+
+<ul>
+<li>represents a column containing a string (60 characters)</li>
+<li>can&rsquo;t be null </li>
+<li>is a foreign key to <code>cities.id</code></li>
+</ul></li>
+<li>class attribute <code>user_id</code>
+
+<ul>
+<li>represents a column containing a string (60 characters)</li>
+<li>can&rsquo;t be null</li>
+<li>is a foreign key to <code>users.id</code></li>
+</ul></li>
+<li>class attribute <code>name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters) </li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>description</code>
+
+<ul>
+<li>represents a column containing a string (1024 characters) </li>
+<li>can be null</li>
+</ul></li>
+<li>class attribute <code>number_rooms</code>
+
+<ul>
+<li>represents a column containing an integer</li>
+<li>can&rsquo;t be null </li>
+<li>default value: <code>0</code></li>
+</ul></li>
+<li>class attribute <code>number_bathrooms</code>
+
+<ul>
+<li>represents a column containing an integer</li>
+<li>can&rsquo;t be null </li>
+<li>default value: <code>0</code></li>
+</ul></li>
+<li>class attribute <code>max_guest</code>
+
+<ul>
+<li>represents a column containing an integer</li>
+<li>can&rsquo;t be null</li>
+<li>default value: <code>0</code></li>
+</ul></li>
+<li>class attribute <code>price_by_night</code>
+
+<ul>
+<li>represents a column containing an integer</li>
+<li>can&rsquo;t be null</li>
+<li>default value: <code>0</code></li>
+</ul></li>
+<li>class attribute <code>latitude</code>
+
+<ul>
+<li>represents a column containing a float </li>
+<li>can be null</li>
+</ul></li>
+<li>class attribute <code>longitude</code>
+
+<ul>
+<li>represents a column containing a float</li>
+<li>can be null</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Update <code>User</code>: (<code>models/user.py</code>)</p>
+
+<ul>
+<li>Add or replace in the class <code>User</code>:
+
+<ul>
+<li>class attribute <code>places</code> must represent a relationship with the class <code>Place</code>. If the <code>User</code> object is deleted, all linked <code>Place</code> objects must be automatically deleted. Also, the reference from a <code>Place</code> object to his <code>User</code> should be named <code>user</code></li>
+</ul></li>
+</ul>
+
+<p>Update <code>City</code>: (<code>models/city.py</code>)</p>
+
+<ul>
+<li>Add or replace in the class <code>City</code>:
+
+<ul>
+<li>class attribute <code>places</code> must represent a relationship with the class <code>Place</code>. If the <code>City</code> object is deleted, all linked <code>Place</code> objects must be automatically deleted. Also, the reference from a <code>Place</code> object to his <code>City</code> should be named <code>cities</code></li>
+</ul></li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create Place city_id=&quot;4b457e66-c7c8-4f63-910f-fd91c3b7140b&quot; user_id=&quot;4f3f4b42-a4c3-4c20-a492-efff10d00c0b&quot; name=&quot;Lovely_place&quot; number_rooms=3 number_bathrooms=1 max_guest=6 price_by_night=120 latitude=37.773972 longitude=-122.431297&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) ed72aa02-3286-4891-acbc-9d9fc80a1103
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;all Place&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) [[Place] (ed72aa02-3286-4891-acbc-9d9fc80a1103) {&#39;latitude&#39;: 37.774, &#39;city_id&#39;: &#39;4b457e66-c7c8-4f63-910f-fd91c3b7140b&#39;, &#39;price_by_night&#39;: 120, &#39;id&#39;: &#39;ed72aa02-3286-4891-acbc-9d9fc80a1103&#39;, &#39;user_id&#39;: &#39;4f3f4b42-a4c3-4c20-a492-efff10d00c0b&#39;, &#39;max_guest&#39;: 6, &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 1, 22, 30), &#39;description&#39;: None, &#39;number_rooms&#39;: 3, &#39;longitude&#39;: -122.431, &#39;number_bathrooms&#39;: 1, &#39;name&#39;: &#39;&quot;Lovely place&#39;, &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 1, 22, 30)}]
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM places\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+              id: ed72aa02-3286-4891-acbc-9d9fc80a1103
+      created_at: 2017-11-10 01:22:30
+      updated_at: 2017-11-10 01:22:30
+         city_id: 4b457e66-c7c8-4f63-910f-fd91c3b7140b
+         user_id: 4f3f4b42-a4c3-4c20-a492-efff10d00c0b
+            name: &quot;Lovely place&quot;
+     description: NULL
+    number_rooms: 3
+number_bathrooms: 1
+       max_guest: 6
+  price_by_night: 120
+        latitude: 37.774
+       longitude: -122.431
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/place.py, models/user.py, models/city.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2651-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2651}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2651" type="button" class="btn btn-default btn-sm check-your-task-2651-modal-button" id="task-num-8-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2651-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2651-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2651-correction-modal-label">8. DBStorage - Place</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2651">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2651">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2651">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2651-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2651}" data-task-id="2651" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2651-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2651-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2651"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2651-modal-label">8. DBStorage - Place</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2652" data-position="11" id="task-num-9">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2652">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>9. DBStorage - Review</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2652" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 50.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">50.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update <code>Review</code>: (<code>models/review.py</code>)</p>
+
+<ul>
+<li><code>Review</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>Review</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code>
+
+<ul>
+<li>represents the table name,  <code>reviews</code></li>
+</ul></li>
+<li>class attribute <code>text</code>
+
+<ul>
+<li>represents a column containing a string (1024 characters)</li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>place_id</code>
+
+<ul>
+<li>represents a column containing a string (60 characters)</li>
+<li>can&rsquo;t be null</li>
+<li>is a foreign key to <code>places.id</code></li>
+</ul></li>
+<li>class attribute <code>user_id</code>
+
+<ul>
+<li>represents a column containing a string (60 characters)</li>
+<li>can&rsquo;t be null</li>
+<li>is a foreign key to <code>users.id</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Update <code>User</code>: (<code>models/user.py</code>)</p>
+
+<ul>
+<li>Add or replace in the class <code>User</code>:
+
+<ul>
+<li>class attribute <code>reviews</code> must represent a relationship with the class <code>Review</code>. If the <code>User</code> object is deleted, all linked <code>Review</code> objects must be automatically deleted. Also, the reference from a <code>Review</code> object to his <code>User</code> should be named <code>user</code></li>
+</ul></li>
+</ul>
+
+<p>Update <code>Place</code>: (<code>models/place.py</code>)</p>
+
+<ul>
+<li>for <code>DBStorage</code>: class attribute <code>reviews</code> must represent a relationship with the class <code>Review</code>. If the <code>Place</code> object is deleted, all linked <code>Review</code> objects must be automatically deleted. Also, the reference from a <code>Review</code> object to his <code>Place</code> should be named <code>place</code></li>
+<li>for <code>FileStorage</code>: getter attribute <code>reviews</code> that returns the list of <code>Review</code> instances with <code>place_id</code> equals to the current <code>Place.id</code> =&gt; It will be the <code>FileStorage</code> relationship between <code>Place</code> and <code>Review</code></li>
+</ul>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create User email=&quot;bob@hbtn.io&quot; password=&quot;bobpwd&quot; first_name=&quot;Bob&quot; last_name=&quot;Dylan&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) d93638d9-8233-4124-8f4e-17786592908b
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;create Review place_id=&quot;ed72aa02-3286-4891-acbc-9d9fc80a1103&quot; user_id=&quot;d93638d9-8233-4124-8f4e-17786592908b&quot; text=&quot;Amazing_place,_huge_kitchen&quot;&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) a2d163d3-1982-48ab-a06b-9dc71e68a791
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;all Review&#39; | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) [[Review] (f2616ff2-f723-4d67-85dc-f050a38e0f2f) {&#39;text&#39;: &#39;Amazing place, huge kitchen&#39;, &#39;place_id&#39;: &#39;ed72aa02-3286-4891-acbc-9d9fc80a1103&#39;, &#39;id&#39;: &#39;f2616ff2-f723-4d67-85dc-f050a38e0f2f&#39;, &#39;updated_at&#39;: datetime.datetime(2017, 11, 10, 4, 6, 25), &#39;created_at&#39;: datetime.datetime(2017, 11, 10, 4, 6, 25), &#39;user_id&#39;: &#39;d93638d9-8233-4124-8f4e-17786592908b&#39;}]
+(hbnb) 
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM reviews\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: f2616ff2-f723-4d67-85dc-f050a38e0f2f
+created_at: 2017-11-10 04:06:25
+updated_at: 2017-11-10 04:06:25
+      text: Amazing place, huge kitchen
+  place_id: ed72aa02-3286-4891-acbc-9d9fc80a1103
+   user_id: d93638d9-8233-4124-8f4e-17786592908b
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/review.py, models/user.py, models/place.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2652-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2652}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2652" type="button" class="btn btn-default btn-sm check-your-task-2652-modal-button" id="task-num-9-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2652-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2652-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2652-correction-modal-label">9. DBStorage - Review</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2652">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2652">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2652">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2652-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2652}" data-task-id="2652" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2652-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2652-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2652"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2652-modal-label">9. DBStorage - Review</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+      <div data-role="task2653" data-position="12" id="task-num-10">
+        <div>
+  <span id="user_id" data-id="283121"></span>
+
+  <div class="card task-card" id="task-2653">
+    <h5 class="card-header hstack gap-2 justify-content-between"><span>10. DBStorage - Amenity... and BOOM!</span>
+      <div class="hstack gap-1">
+          <span class="badge text-bg-info">
+            mandatory
+</span>      </div>
+</h5>
+    <div class="card-body">
+      <!-- Progress vs Score -->
+        <div class="task_progress_score_bar truncate" data-task-id="2653" data-correction-id="31487054">
+          <div class="task_progress_bar" style="width: 100.0%">
+            <div class="task_score_bar" style="width: 50.0%">
+            </div>
+          </div>
+          <div class="task_progress_score_text">
+            Score: <span class="task_score_value">50.0%</span> (<span class="task_progress_value">Checks completed: 100.0%</span>)
+          </div>
+        </div>
+
+      <!-- Task Body -->
+      <p>Update <code>Amenity</code>: (<code>models/amenity.py</code>)</p>
+
+<ul>
+<li><code>Amenity</code> inherits from <code>BaseModel</code> and <code>Base</code> (respect the order)</li>
+<li>Add or replace in the class <code>Amenity</code>:
+
+<ul>
+<li>class attribute <code>__tablename__</code>
+
+<ul>
+<li>represents the table name, <code>amenities</code></li>
+</ul></li>
+<li>class attribute <code>name</code>
+
+<ul>
+<li>represents a column containing a string (128 characters)</li>
+<li>can&rsquo;t be null</li>
+</ul></li>
+<li>class attribute <code>place_amenities</code> must represent a relationship <a href="https://savanna.alxafrica.com/rltoken/LiU5umFamh-YbwWkgd8kNw" title="Many-To-Many" target="_blank">Many-To-Many</a> between the class <code>Place</code> and <code>Amenity</code>. Please see below more detail: <code>place_amenity</code> in the <code>Place</code> update</li>
+</ul></li>
+</ul>
+
+<p>Update <code>Place</code>: (<code>models/place.py</code>)</p>
+
+<ul>
+<li>Add an instance of <a href="https://savanna.alxafrica.com/rltoken/Pngd-iHVu-kUMyq5VaC9PQ" title="SQLAlchemy Table" target="_blank">SQLAlchemy Table</a> called <code>place_amenity</code> for creating the relationship <a href="https://savanna.alxafrica.com/rltoken/LiU5umFamh-YbwWkgd8kNw" title="Many-To-Many" target="_blank">Many-To-Many</a> between <code>Place</code> and <code>Amenity</code>:
+
+<ul>
+<li>table name <code>place_amenity</code></li>
+<li><code>metadata = Base.metadata</code></li>
+<li>2 columns:
+
+<ul>
+<li><code>place_id</code>, a string of 60 characters foreign key of <code>places.id</code>, primary key in the table and never null</li>
+<li><code>amenity_id</code>, a string of 60 characters foreign key of <code>amenities.id</code>, primary key in the table and never null</li>
+</ul></li>
+</ul></li>
+<li>Update <code>Place</code> class:
+
+<ul>
+<li>for <code>DBStorage</code>: class attribute <code>amenities</code> must represent a relationship with the class <code>Amenity</code> but also as <code>secondary</code> to <code>place_amenity</code> with option <code>viewonly=False</code> (<code>place_amenity</code> has been define previously)</li>
+<li>for <code>FileStorage</code>: 
+
+<ul>
+<li>Getter attribute <code>amenities</code> that returns the list of <code>Amenity</code> instances based on the attribute <code>amenity_ids</code> that contains all <code>Amenity.id</code> linked to the <code>Place</code></li>
+<li>Setter attribute <code>amenities</code> that handles <code>append</code> method for adding an <code>Amenity.id</code> to the attribute <code>amenity_ids</code>. This method should accept only <code>Amenity</code> object, otherwise, do nothing.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3>What&rsquo;s a <code>Many-to-Many</code> relationship?</h3>
+
+<p>In our system, we don&rsquo;t want to duplicate amenities (for example, having 10000 time the amenity <code>Wifi</code>), so they will be unique. But, at least 2 places can have the same amenity (like <code>Wifi</code> for example). 
+We are in the case of:</p>
+
+<ul>
+<li>an amenity can be linked to multiple places</li>
+<li>a place can have multiple amenities</li>
+</ul>
+
+<p>= <code>Many-To-Many</code></p>
+
+<p>To make this link working, we will create a third table called <code>place_amenity</code> that will create these links.</p>
+
+<p>And you are good, you have a new engine!</p>
+
+<pre><code>guillaume@ubuntu:~/AirBnB_v2$ cat main_place_amenities.py 
+#!/usr/bin/python3
+&quot;&quot;&quot; Test link Many-To-Many Place &lt;&gt; Amenity
+&quot;&quot;&quot;
+from models import *
+
+# creation of a State
+state = State(name=&quot;California&quot;)
+state.save()
+
+# creation of a City
+city = City(state_id=state.id, name=&quot;San Francisco&quot;)
+city.save()
+
+# creation of a User
+user = User(email=&quot;john@snow.com&quot;, password=&quot;johnpwd&quot;)
+user.save()
+
+# creation of 2 Places
+place_1 = Place(user_id=user.id, city_id=city.id, name=&quot;House 1&quot;)
+place_1.save()
+place_2 = Place(user_id=user.id, city_id=city.id, name=&quot;House 2&quot;)
+place_2.save()
+
+# creation of 3 various Amenity
+amenity_1 = Amenity(name=&quot;Wifi&quot;)
+amenity_1.save()
+amenity_2 = Amenity(name=&quot;Cable&quot;)
+amenity_2.save()
+amenity_3 = Amenity(name=&quot;Oven&quot;)
+amenity_3.save()
+
+# link place_1 with 2 amenities
+place_1.amenities.append(amenity_1)
+place_1.amenities.append(amenity_2)
+
+# link place_2 with 3 amenities
+place_2.amenities.append(amenity_1)
+place_2.amenities.append(amenity_2)
+place_2.amenities.append(amenity_3)
+
+storage.save()
+
+print(&quot;OK&quot;)
+
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./main_place_amenities.py
+OK
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM amenities\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: 47321eb8-152a-46df-969a-440aa67a6d59
+created_at: 2017-11-10 04:22:02
+updated_at: 2017-11-10 04:22:02
+      name: Cable
+*************************** 2. row ***************************
+        id: 4a307e7f-68f9-438f-81c0-8325898dda2a
+created_at: 2017-11-10 04:22:02
+updated_at: 2017-11-10 04:22:02
+      name: Oven
+*************************** 3. row ***************************
+        id: b80aec52-d0c9-420a-8471-3254572954b6
+created_at: 2017-11-10 04:22:02
+updated_at: 2017-11-10 04:22:02
+      name: Wifi
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM places\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+              id: 497e3867-d6e9-4401-9c7c-9687c18d2ac7
+      created_at: 2017-11-10 04:22:02
+      updated_at: 2017-11-10 04:22:02
+         city_id: 9d60df6e-31f7-430c-8162-69e89f4a17aa
+         user_id: 9b37bd51-6aef-485f-bf10-c7ab83fea2e9
+            name: House 1
+     description: NULL
+    number_rooms: 0
+number_bathrooms: 0
+       max_guest: 0
+  price_by_night: 0
+        latitude: NULL
+       longitude: NULL
+*************************** 2. row ***************************
+              id: db549ae1-4500-4d0c-9b50-4b4978ed229e
+      created_at: 2017-11-10 04:22:02
+      updated_at: 2017-11-10 04:22:02
+         city_id: 9d60df6e-31f7-430c-8162-69e89f4a17aa
+         user_id: 9b37bd51-6aef-485f-bf10-c7ab83fea2e9
+            name: House 2
+     description: NULL
+    number_rooms: 0
+number_bathrooms: 0
+       max_guest: 0
+  price_by_night: 0
+        latitude: NULL
+       longitude: NULL
+guillaume@ubuntu:~/AirBnB_v2$ 
+guillaume@ubuntu:~/AirBnB_v2$ echo &#39;SELECT * FROM place_amenity\G&#39; | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+  place_id: 497e3867-d6e9-4401-9c7c-9687c18d2ac7
+amenity_id: 47321eb8-152a-46df-969a-440aa67a6d59
+*************************** 2. row ***************************
+  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
+amenity_id: 47321eb8-152a-46df-969a-440aa67a6d59
+*************************** 3. row ***************************
+  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
+amenity_id: 4a307e7f-68f9-438f-81c0-8325898dda2a
+*************************** 4. row ***************************
+  place_id: 497e3867-d6e9-4401-9c7c-9687c18d2ac7
+amenity_id: b80aec52-d0c9-420a-8471-3254572954b6
+*************************** 5. row ***************************
+  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
+amenity_id: b80aec52-d0c9-420a-8471-3254572954b6
+guillaume@ubuntu:~/AirBnB_v2$ 
+</code></pre>
+
+</div>
+    <div class="list-group list-group-flush">
+        <!-- LTI Resource -->
+
+      <!-- Task Files -->
+
+      <!-- Task URLs -->
+
+      <!-- Github information -->
+        <div class="list-group-item">
+          <p><strong>Repo:</strong></p>
+          <ul>
+            <li>GitHub repository: <code>AirBnB_clone_v2</code></li>
+              <li>File: <code>models/amenity.py, models/place.py</code></li>
+          </ul>
+        </div>
+
+      <!-- Self-paced manual review -->
+    </div>
+
+    <!-- Footer - Controls -->
+    
+  <div class="card-footer">
+    <div class="align-items-center d-flex justify-content-between">
+      <div>
+            
+<button data-bs-target="#task-test-correction-2653-correction-modal" data-bs-toggle="modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2653}" data-gtm-custom-event-name="task_checker_modal" data-task-id="2653" type="button" class="btn btn-default btn-sm check-your-task-2653-modal-button" id="task-num-10-check-code-btn">Check submission</button><div aria-hidden="true" aria-labelledby="task-test-correction-2653-correction-modal-label" class="modal modal-lg fade student_modal task_correction_modal text-start" id="task-test-correction-2653-correction-modal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-test-correction-2653-correction-modal-label">10. DBStorage - Amenity... and BOOM!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="actions">
+      <center>
+        <div class="alert alert-info d-none"></div>
+
+        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="2653">Request a new review</button>
+        <button class="btn btn-secondary close-modal d-none" data-bs-dismiss="modal" type="button">Close</button>
+
+        <div class="spinner" style="display: none;">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+        <div class="error fw-semibold m-3 text-danger"></div>
+        <div class="info fw-semibold m-3"></div>
+      </center>
+    </div>
+    <div class="result"></div>
+
+    <div class="help">
+  <button data-task-id="2653">
+    <i aria-hidden="true" class="fa-solid fa-circle-info"></i>
+  </button>
+  <div class="help-container" data-task-id="2653">
+    <div class="check-line">
+      <div class="check-inline requirement success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Requirement success</span>
+      </div>
+      <div class="check-inline requirement fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Requirement fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline code success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Code success</span>
+      </div>
+      <div class="check-inline code fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Code fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline efficiency success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Efficiency success</span>
+      </div>
+      <div class="check-inline efficiency fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Efficiency fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline answer success">
+        <i aria-hidden="true" class="fa-solid fa-circle-check fa-fw"></i><span>Text answer success</span>
+      </div>
+      <div class="check-inline answer fail">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Text answer fail</span>
+      </div>
+    </div>
+    <div class="check-line">
+      <div class="check-inline requirement fail offline">
+        <i aria-hidden="true" class="fa-solid fa-circle-xmark fa-fw"></i><span>Skipped - Previous check failed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+
+
+          
+
+            
+<button data-bs-target="#task-qa-review-2653-modal" data-bs-toggle="modal" data-gtm-custom-event-name="task_qa_review_modal" data-gtm-custom-event-options="{&quot;taskId&quot;:2653}" data-task-id="2653" type="button" class="btn btn-default btn-sm">View results</button><div aria-hidden="true" aria-labelledby="task-qa-review-2653-modal-label" class="modal modal-lg fade task_get_qa_review" id="task-qa-review-2653-modal" tabindex="-1" data-correction-id="31487054" data-task-id="2653"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="task-qa-review-2653-modal-label">10. DBStorage - Amenity... and BOOM!</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="review-container">
+      <div class="review-corrector"></div>
+      <div class="review-github well" style="display:none">
+        <h5>Commit used:</h5>
+        <ul>
+          <li style="display:none"><strong>User:</strong> <code class="review-github-id"></code> <span class="review-github-name">---</span></li>
+          <li style="display:none"><strong>URL:</strong> <a class="review-github-url" target="_blank">Click here</a></li>
+          <li style="display:none"><strong>ID:</strong> <code class="review-github-commit_id">---</code></li>
+          <li style="display:none"><strong>Author:</strong> <span class="review-github-committer_username">---</span></li>
+          <li style="display:none"><strong>Subject:</strong> <em class="review-github-subject">---</em></li>
+          <li style="display:none"><strong>Date:</strong> <span class="review-github-datetime">---</span></li>
+        </ul>
+      </div>
+      <div class="review-percentage_down"></div>
+      <ul class="review-checks list-group sm-gap"></ul>
+      <div class="review-comment"></div>
+    </div>
+</div></div></div></div>
+      </div>
+
+      <div>
+</div>
+
+    </div>
+</div>
+    
+    
+</div></div>
+
+      </div>
+  </div>
+
+
+
+
+            <div aria-hidden="true" aria-labelledby="container-specs-modal-label" class="modal modal-lg fade" id="container-specs-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="container-specs-modal-label">Recommended Sandboxes</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><div data-react-class="user_containers/ContainerSpecs" data-react-props="{&quot;containerModelName&quot;:&quot;Sandbox&quot;,&quot;containerSpecs&quot;:[{&quot;available&quot;:true,&quot;description&quot;:&quot;\u003cp\u003eUbuntu 14.04 with all tools needed and Python 3.4\u003c/p\u003e\n&quot;,&quot;id&quot;:5,&quot;name&quot;:&quot;Ubuntu 14.04 - Python 3.4&quot;,&quot;online&quot;:true},{&quot;available&quot;:true,&quot;description&quot;:&quot;\u003cp\u003eBasic Ubuntu 20.04, with vim, emacs, curl, wget and all needed for Foundations\u003c/p\u003e\n&quot;,&quot;id&quot;:39,&quot;name&quot;:&quot;Ubuntu 20.04&quot;,&quot;online&quot;:true}],&quot;containersLimit&quot;:2,&quot;csrfToken&quot;:&quot;8bcbFGqDpCkoVFcuaU3ZONPFUN7ATqehtTYvuuMb1VYxyJKgRiPlvTnykFQNW6BFD20iUsk-68BH7EcrZr82Dg&quot;,&quot;startStatusURI&quot;:&quot;/user_containers/start_status.json&quot;,&quot;startURI&quot;:&quot;/user_containers/start.json&quot;}" data-react-cache-id="user_containers/ContainerSpecs-0"></div></div></div></div></div>
+
+    </div>
+  </div>
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+      </article>
+
+        <div class="copyright">Copyright © 2025 ALX, All rights reserved.</div>
+
+    </main>
+
+        <button data-bs-target="#search-modal" data-bs-toggle="modal" data-search-active="false" type="button" class="btn btn-primary atop-help" id="search-button">    <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+    <i aria-hidden="true" class="fa-solid fa-window-minimize"></i>
+</button><div aria-hidden="true" aria-labelledby="search-modal-label" class="modal fade" id="search-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header d-block">    <div class="position-relative">
+      <input id="search-bar"
+              autocomplete="off"
+              type="text"
+              placeholder="Search ...">
+    </div>
+</div><div class="modal-body">    <div class="spinner sm-gap">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+
+    <div class="vstack gap-4" id="search-results-container"></div>
+</div></div></div></div>
+
+
+        <div aria-hidden="true" aria-labelledby="markdown-guide-modal-label" class="modal modal-lg fade" id="markdown-guide-modal" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h1 class="modal-title fs-5" id="markdown-guide-modal-label">Markdown guide</h1><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button></div><div class="modal-body"><h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>> This is a quote.
+> It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+</div></div></div></div>
+
+        <script id="cody-snippet">
+          window.codySettings = { widget_id: "9993bc72-2258-452b-a4bf-b2fe1ad5e0d7" };
+          !function(){var t=window,e=document,a=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://trinketsofcody.com/cody-widget.js";var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?a():t.attachEvent?t.attachEvent("onload",a):t.addEventListener("load",a,!1)}();
+        </script>
+  </body>
+</html>
